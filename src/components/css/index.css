@@ -1,0 +1,25 @@
+:root {
+  --Background: #202020;
+  --Light: #fff;
+  --Gold: #e9ae0c;
+}
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: var(--Background);
+}
+a {
+  font-size: 1.3em;
+  text-decoration: none;
+  color: var(--Gold);
+}
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
