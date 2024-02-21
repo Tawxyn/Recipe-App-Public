@@ -1,4 +1,19 @@
+import React, { useState, useEffect } from 'react';
+
 function Home() {
+
+  const [data, setData] = useState([{}])
+  useEffect(() => {
+    fetch('/recipe').then(
+      res => res.json()
+    ).then(
+      data => {
+        setData(data)
+        console.log(data)
+      }
+    )
+  }, [])
+
   return (
     <div className="App">
       <header className="Header center">
@@ -12,6 +27,18 @@ function Home() {
           Learn React
         </a>
       </header>
+
+      {(typeof data.recipe === 'undefined') ? (
+        <p>Loading...</p>
+      ): (
+        data.recipe.map((recipe, i) => (
+          <p key={i}>{recipe}</p>
+        ))
+      )}
+
+
+      
+
     </div>
   );
 }
