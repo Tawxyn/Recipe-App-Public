@@ -15,6 +15,9 @@ frontend/node_modules/
 # production
 /build
 
+# Database credentials / etc 
+.env.cred 
+
 # misc
 .DS_Store
 .env.local
