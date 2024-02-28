@@ -16,7 +16,7 @@ frontend/node_modules/
 /build
 
 # Database credentials / etc 
-.env.cred 
+.env
 
 # misc
 .DS_Store
