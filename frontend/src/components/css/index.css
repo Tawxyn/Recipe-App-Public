@@ -1,7 +1,10 @@
 :root {
-  --Background: #a09898;
+  --Background: #e2e1e1;
   --Light: #fff;
   --Gold: #e9ae0c;
+  --FontColor: #010101;
+  --RecipeCard: #2a4e88;
+
 }
 body {
   margin: 0;

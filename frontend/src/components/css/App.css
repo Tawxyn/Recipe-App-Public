@@ -1,13 +1,31 @@
-.App {
-  text-align: center;
-}
+
 
 .App-logo {
   height: 40vmin;
   pointer-events: none;
 }
-
+/* nav bar */
+.Nav{
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 99;
+  background-image: linear-gradient(#0000009e, #0f010e00);
+  padding: 2px 32px;
+}
+/* header */
 .Header {
-  min-height: 100vh;
-  color: white;
+  min-height: 50vh;
+  color: var(--FontColor);
+}
+/* content */
+
+.recipe{
+  max-width: 500px;
+  margin: auto;
+  background-color: var(--RecipeCard);
+  color: var(--Light);
+  border-radius: 30px;
+  padding: 3%;
 }

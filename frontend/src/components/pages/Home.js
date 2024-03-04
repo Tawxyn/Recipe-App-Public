@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import Nav from "../constants/NavBar"
 
 function Home() {
 
@@ -16,6 +17,7 @@ function Home() {
 
   return (
     <div className="App">
+      <Nav/>
       <header className="Header center">
         <h1>CSC 130 Class Project</h1>
         <a
@@ -27,15 +29,15 @@ function Home() {
           Learn React
         </a>
       </header>
-
-      {(typeof data.recipe === 'undefined') ? (
-        <p>Loading...</p>
-      ): (
-        data.recipe.map((recipe, i) => (
-          <p key={i}>{recipe}</p>
-        ))
-      )}
-
+    <div className='recipe center'>
+         {(typeof data.recipe === 'undefined') ? (
+          <p>Loading...</p>
+       ): (
+         data.recipe.map((recipe, i) => (
+              <p key={i}>{recipe}</p>
+          ))
+       )}
+    </div>
 
       
 
