@@ -1,6 +1,28 @@
 from flask import Blueprint, jsonify
-
 from backend.ext import mongo
+
+# checking if the server connected -- should say "pinged your deplyment. you..."
+from pymongo.mongo_client import MongoClient
+from pymongo.server_api import ServerApi
+uri = "mongodb+srv://MikeO:1234@cluster0.xc8wzqa.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
+# Create a new client and connect to the server
+client = MongoClient(uri, server_api=ServerApi('1'))
+# Send a ping to confirm a successful connection
+try:
+    client.admin.command('ping')
+    print("Pinged your deployment. You successfully connected to MongoDB!")
+except Exception as e:
+    print(e)
+
+
+# import new data into colelctions // everytime go to "/" it will insert emily
+db = client.CSC131Data
+collection = db.Recipes
+
+test = {
+    "name": "Emily2",
+    }
+
 
 main = Blueprint('main', __name__)
 
@@ -15,7 +37,11 @@ def test_database_connection():
 
 @main.route('/')
 def home():
+    testInsert = collection.insert_one(test)
+    print(testInsert)
     return "home"
+    
+
 
 @main.route('/index')
 def index():
