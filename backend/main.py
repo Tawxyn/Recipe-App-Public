@@ -1,5 +1,7 @@
-from flask import Blueprint, jsonify
+from flask import Blueprint, jsonify, render_template, request
 from backend.ext import mongo
+from urllib.parse import unquote
+import requests
 
 # checking if the server connected -- should say "pinged your deplyment. you..."
 from pymongo.mongo_client import MongoClient
@@ -23,8 +25,10 @@ test = {
     "name": "Emily2",
     }
 
-
 main = Blueprint('main', __name__)
+
+#spoonacular API key
+API_KEY = 'ead2b30b6df1428085083e3ec1a90fb7'
 
 @main.route('/test_database_connection')
 def test_database_connection():
@@ -35,12 +39,58 @@ def test_database_connection():
     except Exception as e:
         return jsonify({"success": False, "error": str(e)})
 
-@main.route('/')
+@main.route('/home')
 def home():
     testInsert = collection.insert_one(test)
     print(testInsert)
-    return "home"
-    
+    # Renders the main page with an empty list of recipes and  search query
+    return render_template('index1.html', recipe_list=[], search_query='')
+
+@main.route('/', methods=['GET', 'POST'])
+def home1():
+    if request.method == 'POST':
+        # If a POST request (or a form) is submitted (information from client)
+        query = request.form.get('search_query', '')
+        # Search for recipes under the given query
+        recipes = search_recipes(query)
+        # Render the main page with the given query and its list of recipes
+        return render_template('index1.html', recipe_list=recipes, search_query=query)
+    else:
+        # GET request (or no form) is submitted
+        search_query = request.args.get('search_query', '')
+        decoded_search_query = unquote(search_query)
+        # Search for recipes under the decoded search query
+        recipes = search_recipes(decoded_search_query)
+        # Render the main page with the query and its list of reicpes
+        return render_template('index1.html', recipe_list=recipes, search_query=decoded_search_query)
+
+# Function that searches for recipes under a given query
+def search_recipes(query):
+    url = f'https://api.spoonacular.com/recipes/complexSearch'
+    # Parameters
+    params = {
+        'apiKey': API_KEY,
+        'query': query,
+        'number': 10,
+        'instructionsRequired': True,
+        'addRecipeInformation': True,
+        'fillIngredients': True,
+    }
+
+    # Sends the GET request to Spoonacular API with the parameters
+    response = requests.get(url, params=params)
+
+    # If API call is successful
+    if response.status_code == 200:
+        # Parse the API response as JSON data
+        print("API call hit")
+        data = response.json()
+        # Returns the list of recipes
+        return data['results']
+    # If not successful
+    print("API call unsuccessful")
+    return []
+
 
 
 @main.route('/index')
