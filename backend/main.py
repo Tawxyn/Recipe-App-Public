@@ -1,4 +1,4 @@
-from flask import Blueprint, jsonify, render_template, request
+from flask import Blueprint, jsonify, render_template, request, redirect, url_for
 from backend.ext import mongo
 from urllib.parse import unquote
 import requests
@@ -71,7 +71,7 @@ def search_recipes(query):
     params = {
         'apiKey': API_KEY,
         'query': query,
-        'number': 10,
+        'number': 5,
         'instructionsRequired': True,
         'addRecipeInformation': True,
         'fillIngredients': True,
@@ -91,7 +91,33 @@ def search_recipes(query):
     print("API call unsuccessful")
     return []
 
+# Route to view a specific recipe given its ID
+@main.route('/recipe/<int:recipe_id>')
+def view_recipe(recipe_id):
+    # Get the search query from the URL query parameters
+    search_query = request.args.get('search_query', '')
+    # Build the URL to get information about the specific recipe ID from Spoonacular
+    url = f'https://api.spoonacular.com/recipes/{recipe_id}/information'
+    params = {
+        'apiKey': API_KEY,
+    }
 
+    # Sends a GET request to Spoonacular to get recipe information
+    response = requests.get(url, params=params)
+    # If API call is successful
+    if response.status_code == 200:
+        print("API call hit")
+        # Parse the API response as JSON data
+        recipe = response.json()
+        return render_template('view_recipe.html', recipe=recipe, search_query=search_query)
+    # If call is unsuccessful
+    return "Recipe not found", 404
+
+@main.route('/recipes', methods=["POST"])
+def add_recipe():
+    recipe_item = request.form.get('add recipe')
+
+    return redirect(url_for('main.index'))
 
 @main.route('/index')
 def index():
