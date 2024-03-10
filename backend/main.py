@@ -21,10 +21,6 @@ except Exception as e:
 db = client.CSC131Data
 collection = db.Recipes
 
-test = {
-    "name": "Emily2",
-    }
-
 main = Blueprint('main', __name__)
 
 #spoonacular API key
@@ -39,15 +35,13 @@ def test_database_connection():
     except Exception as e:
         return jsonify({"success": False, "error": str(e)})
 
-@main.route('/home')
-def home():
-    testInsert = collection.insert_one(test)
-    print(testInsert)
+#@main.route('/home')
+#def home():
     # Renders the main page with an empty list of recipes and  search query
-    return render_template('index1.html', recipe_list=[], search_query='')
+#    return render_template('index1.html', recipe_list=[], search_query='')
 
 @main.route('/', methods=['GET', 'POST'])
-def home1():
+def home():
     if request.method == 'POST':
         # If a POST request (or a form) is submitted (information from client)
         query = request.form.get('search_query', '')
@@ -113,11 +107,35 @@ def view_recipe(recipe_id):
     # If call is unsuccessful
     return "Recipe not found", 404
 
-@main.route('/recipes', methods=["POST"])
+# Route to add a specific recipe
+@main.route('/add_reicpe', methods=['POST'])
 def add_recipe():
-    recipe_item = request.form.get('add recipe')
+    # Gets recipe ID from the form
+    recipe_id = request.form.get('recipe_id')
 
-    return redirect(url_for('main.index'))
+    search_query = request.form.get('search_query')
+
+    # Build the URL to get information about the specific recipe ID from Spoonacular
+    url = f'https://api.spoonacular.com/recipes/{recipe_id}/information'
+    params = {
+        'apiKey': API_KEY,
+    }
+
+    # Sends a GET request to Spoonacular to get recipe information
+    response = requests.get(url, params=params)
+    # If API call is successful
+    if response.status_code == 200:
+        print("API call hit (add_recipe)")
+        # Parse the API response as JSON data
+        recipe_details = response.json()
+
+        # Insert the recipe into MongoDB
+        inserted_recipe = collection.insert_one(recipe_details)
+        print(f"Inserted recipe ID: {recipe_id} into MongoDB collections")
+    else:
+        print(f"Failed to fetch recipe details for recipe ID: {recipe_id}")
+
+    return redirect(url_for('main.home', search_query=search_query))
 
 @main.route('/index')
 def index():

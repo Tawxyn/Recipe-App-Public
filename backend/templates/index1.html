@@ -8,7 +8,7 @@
     <form method="POST" action="/">
         <input type="text" name="search_query" placeholder="Search for recipes">
         <input type ="submit" value="Search">
-        <a href="/home" class="home-button">Home</a>
+        <a href="/" class="home-button">Home</a>
     </form>
 
     <!-- Check if recipes are available -->
@@ -22,7 +22,14 @@
             <img src="{{ recipe.image }}" alt="{{ recipe.title }}">
             {% endif %}
             <a href="{{ url_for('main.view_recipe', recipe_id=recipe.id, search_query=search_query) }}">View</a>
-        </li>
+            
+            <!-- add recipe to collection button -->
+            <form action="{{ url_for('main.add_recipe') }}" method="POST">
+                <input type="hidden" name="recipe_id" value="{{ recipe.id }}">
+                <input type="hidden" name="search_query" value="{{ search_query }}"> <!-- Optional, in case you want to redirect with context -->
+                <button type="submit">Add Recipe</button>
+            </form>
+                    </li>
         {% endfor %}
     </ul>
     <!-- If no recipes found -->
