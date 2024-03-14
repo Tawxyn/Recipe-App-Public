@@ -14,6 +14,22 @@
   background-image: linear-gradient(#0000009e, #0f010e00);
   padding: 2px 32px;
 }
+
+.Nav nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.Nav nav ul li {
+  display: inline-block;
+  margin-right: 10px; /* Adjust as needed */
+}
+
+.Nav nav ul li:last-child {
+  margin-right: 0;
+}
+
 /* header */
 .Header {
   min-height: 50vh;
