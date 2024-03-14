@@ -54,11 +54,6 @@ def test_find_collection():
     except Exception as e:
         return jsonify({"success": False, "error": str(e)})
 
-#@main.route('/home')
-#def home():
-    # Renders the main page with an empty list of recipes and  search query
-#    return render_template('index1.html', recipe_list=[], search_query='')
-
 @main.route('/', methods=['GET', 'POST'])
 def home():
     if request.method == 'POST':
@@ -76,6 +71,14 @@ def home():
         recipes = search_recipes(decoded_search_query)
         # Render the main page with the query and its list of reicpes
         return render_template('index1.html', recipe_list=recipes, search_query=decoded_search_query)
+
+@main.route('/search', methods=['GET'])
+def search():
+    query = request.args.get('query')  # Extract query parameter from request
+    # Perform search based on the query and get search results
+    search_results = search_recipes(query)
+    # Return search results as JSON
+    return jsonify({'results': search_results})
 
 # Function that searches for recipes under a given query
 def search_recipes(query):
@@ -162,7 +165,3 @@ def index():
     user_collection.insert({'name': 'Cristina'})
     user_collection.insert({'name': 'Derek'})
     return '<h1>Added a User!</h1>'
-
-@main.route("/recipe")
-def recipe():
-    return {"recipe": ["flour", "egg", "milk"]}
