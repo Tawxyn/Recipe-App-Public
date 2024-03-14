@@ -26,12 +26,31 @@ main = Blueprint('main', __name__)
 #spoonacular API key
 API_KEY = 'ead2b30b6df1428085083e3ec1a90fb7'
 
-@main.route('/test_database_connection')
-def test_database_connection():
+@main.route('/test_find_collection')
+def test_find_collection():
     try:
-        # Attempt to query the database
-        result = mongo.db.collection.find_one()
-        return jsonify({"success": True, "result": result})
+        # Attempt to query the database and fetch all recipes
+        recipes = list(collection.find({}))
+
+        # Convert ObjectId to string for each recipe
+        for recipe in recipes:
+            recipe['_id'] = str(recipe['_id'])
+
+        # Organize the data to include only necessary fields
+        formatted_recipes = []
+        for recipe in recipes:
+            formatted_recipe = {
+                'title': recipe.get('title', 'Untitled'),
+                'summary': recipe.get('summary', 'No summary available'),
+                'servings': recipe.get('servings', 'N/A'),
+                'readyInMinutes': recipe.get('readyInMinutes', 'N/A'),
+                'sourceUrl': recipe.get('sourceUrl', ''),
+                # Add more fields as needed
+            }
+            formatted_recipes.append(formatted_recipe)
+
+         # Return the list of recipes as JSON response
+        return jsonify({"success": True, "recipes": formatted_recipes})
     except Exception as e:
         return jsonify({"success": False, "error": str(e)})
 
