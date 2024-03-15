@@ -11,6 +11,7 @@ const handleSearch = async () => {
   try {
     const response = await fetch(`/search?query=${searchQuery}`);
     const data = await response.json();
+    console.log("recieved data:", data)
     setSearchResults(data.results);
   } catch (error) {
     console.error('Error fetching search results:', error);
@@ -37,7 +38,7 @@ const handleSearch = async () => {
               <li key={index}>
                 <h3 className="recipe-title">{result.title}</h3>
                 {result.image && <img src={result.image} alt={result.title} />}
-                <a href={'/recipe/${result.id}'}>View</a>
+                <a href={`/recipe/${result.id}`}>View</a>
                 </li>
             ))}
             </ul>

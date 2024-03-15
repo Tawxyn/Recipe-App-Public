@@ -56,21 +56,7 @@ def test_find_collection():
 
 @main.route('/', methods=['GET', 'POST'])
 def home():
-    if request.method == 'POST':
-        # If a POST request (or a form) is submitted (information from client)
-        query = request.form.get('search_query', '')
-        # Search for recipes under the given query
-        recipes = search_recipes(query)
-        # Render the main page with the given query and its list of recipes
-        return render_template('index1.html', recipe_list=recipes, search_query=query)
-    else:
-        # GET request (or no form) is submitted
-        search_query = request.args.get('search_query', '')
-        decoded_search_query = unquote(search_query)
-        # Search for recipes under the decoded search query
-        recipes = search_recipes(decoded_search_query)
-        # Render the main page with the query and its list of reicpes
-        return render_template('index1.html', recipe_list=recipes, search_query=decoded_search_query)
+    return 
 
 @main.route('/search', methods=['GET'])
 def search():
@@ -108,12 +94,11 @@ def search_recipes(query):
     return []
 
 # Route to view a specific recipe given its ID
-@main.route('/recipe/<int:recipe_id>')
-def view_recipe(recipe_id):
-    # Get the search query from the URL query parameters
-    search_query = request.args.get('search_query', '')
+@main.route('/recipe/<int:recipeId>', methods=['GET'])
+def view_recipe(recipeId):
+    print()
     # Build the URL to get information about the specific recipe ID from Spoonacular
-    url = f'https://api.spoonacular.com/recipes/{recipe_id}/information'
+    url = f'https://api.spoonacular.com/recipes/{recipeId}/information'
     params = {
         'apiKey': API_KEY,
     }
@@ -125,7 +110,9 @@ def view_recipe(recipe_id):
         print("API call hit")
         # Parse the API response as JSON data
         recipe = response.json()
-        return render_template('view_recipe.html', recipe=recipe, search_query=search_query)
+        # Return the recipe information as a JSON response
+        return jsonify(recipe)
+
     # If call is unsuccessful
     return "Recipe not found", 404
 
