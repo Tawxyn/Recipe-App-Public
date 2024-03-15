@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Nav from "../constants/NavBar"
+import Footer from "../constants/Footer"
 
 function Home() {
 
@@ -20,18 +21,11 @@ const handleSearch = async () => {
     <div className="App">
       <Nav/>
       <header className="Header center">
-        <h1>CSC 130 Class Project</h1>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <h1>Ctrl-Alt-Defeat Recipes</h1>
+       
       </header>
 
-      <div className='recipe search'>
+      <div className='content search'>
         <input type="text" value = {searchQuery} onChange={(e) => setSearchQuery(e.target.value)}
         placeholder="Enter search query">          
           </input>      
@@ -52,7 +46,7 @@ const handleSearch = async () => {
           )}
         </div>
       </div>
-
+      <Footer/>
     </div>
   );
 }

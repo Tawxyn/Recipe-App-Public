@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Nav from "../constants/NavBar"
+import Footer from "../constants/Footer"
 
 
 function RecipeList() {
@@ -14,7 +15,8 @@ function RecipeList() {
   }, []);
 
   return (
-    <div>
+    <div className='historyWhole'>
+      <Nav/>
       <h1>Recipes</h1>
       <ul>
         {recipes.map(recipe => (
@@ -27,6 +29,7 @@ function RecipeList() {
           </li>
         ))}
       </ul>
+      <Footer/>
     </div>
   );
 }

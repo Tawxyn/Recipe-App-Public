@@ -1,46 +1,70 @@
 
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-/* nav bar */
+/* ------ Nav Bar.js-------- */
 .Nav{
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   z-index: 99;
-  background-image: linear-gradient(#0000009e, #0f010e00);
+  background-image: linear-gradient(#00000025, #0f010e00);
   padding: 2px 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: var(--FontColor);
 }
-
 .Nav nav ul {
   list-style: none;
   padding: 0;
   margin: 0;
+  display: flex; 
 }
-
-.Nav nav ul li {
+.Nav nav ul li a{
   display: inline-block;
   margin-right: 10px; /* Adjust as needed */
+  background-color: var(--LightBlue);
+  min-width: 80px;
+  padding: 7px 15px;
+  margin: 10px;
+  border-style: solid;
+  border-radius: 30px;
+  text-align: center;
 }
-
+.Nav nav ul li a:hover{
+  background-color: var(--Light);
+  color: var(--FontColor);
+}
 .Nav nav ul li:last-child {
   margin-right: 0;
 }
 
-/* header */
+/* ----- Footer.js ------*/
+
+.Footer{
+  display: flex;
+  justify-content: space-between;
+  font-size: smaller;
+  padding: 1%;
+  border-style: solid;
+  border-left: 0;
+  border-right: 0;
+  border-bottom: 0;
+  margin-top: 7%;
+}
+
+/* ---- Home.js ----- */
+
 .Header {
   min-height: 50vh;
   color: var(--FontColor);
 }
 /* content */
 
-.recipe{
-  max-width: 500px;
-  margin: auto;
-  background-color: var(--RecipeCard);
+.content{
+  max-width: 1200px;
+  min-height: 500px;
+  margin: auto 3%;
+  background-color: var(--LightBlue);
   color: var(--Light);
   border-radius: 30px;
   padding: 3%;

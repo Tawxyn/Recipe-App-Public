@@ -3,7 +3,9 @@
   --Light: #fff;
   --Gold: #e9ae0c;
   --FontColor: #010101;
-  --RecipeCard: #2a4e88;
+  --LightBlue: #2a4e88;
+  --Gray: #2d2d2d;
+  --DarkBlue: #01054d;
 
 }
 body {
@@ -15,14 +17,17 @@ body {
   -moz-osx-font-smoothing: grayscale;
   background-color: var(--Background);
 }
-a {
+a { 
   font-size: 1.3em;
   text-decoration: none;
-  color: var(--Gold);
+  color: var(--Light);
 }
 .center {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
+}
+.historyWhole{
+  margin-top: 12%;
 }
