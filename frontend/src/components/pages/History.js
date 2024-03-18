@@ -15,20 +15,23 @@ function RecipeList() {
   }, []);
 
   return (
-    <div className='historyWhole'>
+    <div>
       <Nav/>
-      <h1>Recipes</h1>
-      <ul>
-        {recipes.map(recipe => (
-          <li key={recipe._id}>
-            <h2>{recipe.title}</h2>
-            <p>{recipe.summary}</p>
-            <p>Servings: {recipe.servings}</p>
-            <p>Ready in: {recipe.readyInMinutes} minutes</p>
-            <a href={recipe.sourceUrl}>Source</a>
-          </li>
-        ))}
-      </ul>
+      <div className='historyWhole center'>
+        
+        <h1>Recipes</h1>
+        <ul>
+          {recipes.map(recipe => (
+            <li key={recipe._id}>
+              <h2>{recipe.title}</h2>
+              <p>{recipe.summary}</p>
+              <p>Servings: {recipe.servings}</p>
+              <p>Ready in: {recipe.readyInMinutes} minutes</p>
+              <a href={recipe.sourceUrl}>Source</a>
+            </li>
+          ))}
+        </ul>
+      </div>
       <Footer/>
     </div>
   );

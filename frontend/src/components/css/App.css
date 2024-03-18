@@ -69,3 +69,10 @@
   border-radius: 30px;
   padding: 3%;
 }
+
+/* ------ history page -----*/
+
+.historyWhole{
+  margin: 12% auto ;
+  max-width: 1200px;
+}

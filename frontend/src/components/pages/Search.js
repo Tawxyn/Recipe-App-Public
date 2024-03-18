@@ -18,29 +18,31 @@ function SearchRecipes() {
     };
 
     return (
-        <div className='content search'>
+        <div >
             <Nav/>
             <header className="Header center">
             <h1>Search for Recipes</h1>
             </header>
-            <input type="text" value = {searchQuery} onChange={(e) => setSearchQuery(e.target.value)}
-            placeholder="Enter search query">          
-            </input>      
-            <button onClick={handleSearch}>Search</button>
-            <div>
-                {searchResults.length > 0 ? (
-                    <ul>
-                    {searchResults.map( (result, index) => (
-                        <li key={index}>
-                        <h3 className="recipe-title">{result.title}</h3>
-                        {result.image && <img src={result.image} alt={result.title} />}
-                        <a href={`/recipe/${result.id}`}>View</a>
-                        </li>
-                    ))}
-                    </ul>
-                ) : (
+            <div className='content search'>
+                <input type="text" value = {searchQuery} onChange={(e) => setSearchQuery(e.target.value)}
+                    placeholder="Enter search query">          
+                </input>      
+                <button onClick={handleSearch}>Search</button>
+                <div >
+                    {searchResults.length > 0 ? (
+                        <ul>
+                        {searchResults.map( (result, index) => (
+                            <li key={index}>
+                                <h3 className="recipe-title">{result.title}</h3>
+                                {result.image && <img src={result.image} alt={result.title} />}
+                                <a href={`/recipe/${result.id}`}>View</a>
+                            </li>
+                        ))}
+                        </ul>
+                    ) : (
                     <p>No results found</p>
-                )}
+                    )}
+            </div>
             </div>
             <Footer/>
         </div>
