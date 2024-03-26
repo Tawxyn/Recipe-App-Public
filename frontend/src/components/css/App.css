@@ -54,9 +54,26 @@
 
 /* ---- Home.js ----- */
 
+.home{
+  min-height: 80vh;
+}
 .Header {
   min-height: 50vh;
   color: var(--FontColor);
+}
+.about{
+  text-align: center;
+  max-width: 800px;
+  margin: auto;
+  font-size: 1em;
+  padding: 2%;
+}
+.about a{
+  font-size: 1em;
+  color: var(--FontColor);
+}
+.about a:hover{
+  color: var(--Gold);
 }
 /* content */
 
