@@ -1,27 +1,25 @@
-import React, { useState, useEffect } from 'react';
-import Nav from "../constants/NavBar"
-import Footer from "../constants/Footer"
-
+import React, { useState, useEffect } from "react";
+import Nav from "../constants/NavBar";
+import Footer from "../constants/Footer";
 
 function RecipeList() {
   const [recipes, setRecipes] = useState([]);
 
   useEffect(() => {
-    // Flask endpoint created 
-    fetch('/test_find_collection')  
-      .then(response => response.json())
-      .then(data => setRecipes(data.recipes))
-      .catch(error => console.error('Error fetching recipes:', error));
+    // Flask endpoint created
+    fetch("/test_find_collection")
+      .then((response) => response.json())
+      .then((data) => setRecipes(data.recipes))
+      .catch((error) => console.error("Error fetching recipes:", error));
   }, []);
 
   return (
     <div>
-      <Nav/>
-      <div className='historyWhole center'>
-        
+      <Nav />
+      <div className="historyWhole center sidePage">
         <h1>Recipes</h1>
         <ul>
-          {recipes.map(recipe => (
+          {recipes.map((recipe) => (
             <li key={recipe._id}>
               <h2>{recipe.title}</h2>
               <p>{recipe.summary}</p>
@@ -32,7 +30,7 @@ function RecipeList() {
           ))}
         </ul>
       </div>
-      <Footer/>
+      <Footer />
     </div>
   );
 }

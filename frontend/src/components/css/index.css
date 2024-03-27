@@ -6,7 +6,6 @@
   --LightBlue: #2a4e88;
   --Gray: #2d2d2d;
   --DarkBlue: #01054d;
-
 }
 body {
   margin: 0;
@@ -17,15 +16,26 @@ body {
   -moz-osx-font-smoothing: grayscale;
   background-color: var(--Background);
 }
-a { 
+a {
   font-size: 1.3em;
   text-decoration: none;
-  color: var(--Light);
+  color: var(--FontColor);
 }
 .center {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  
+}
+.sidePage {
+  margin: 8% auto;
+  max-width: 1200px;
+}
+li {
+  list-style-type: none;
+}
+.divider {
+  width: 100%;
+  height: 3px;
+  background-color: var(--Gold);
 }

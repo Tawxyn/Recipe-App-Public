@@ -91,6 +91,7 @@ def search_recipes(query):
         return data['results']
     # If not successful
     print("API call unsuccessful")
+    print(response.json())
     return []
 
 # Route to view a specific recipe given its ID

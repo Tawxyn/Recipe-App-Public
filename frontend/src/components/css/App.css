@@ -1,6 +1,5 @@
-
 /* ------ Nav Bar.js-------- */
-.Nav{
+.Nav {
   position: fixed;
   top: 0;
   left: 0;
@@ -17,9 +16,10 @@
   list-style: none;
   padding: 0;
   margin: 0;
-  display: flex; 
+  display: flex;
 }
-.Nav nav ul li a{
+.Nav nav ul li a {
+  color: var(--Light);
   display: inline-block;
   margin-right: 10px; /* Adjust as needed */
   background-color: var(--LightBlue);
@@ -30,7 +30,7 @@
   border-radius: 30px;
   text-align: center;
 }
-.Nav nav ul li a:hover{
+.Nav nav ul li a:hover {
   background-color: var(--Light);
   color: var(--FontColor);
 }
@@ -40,7 +40,7 @@
 
 /* ----- Footer.js ------*/
 
-.Footer{
+.Footer {
   display: flex;
   justify-content: space-between;
   font-size: smaller;
@@ -54,31 +54,31 @@
 
 /* ---- Home.js ----- */
 
-.home{
+.home {
   min-height: 80vh;
 }
 .Header {
-  min-height: 50vh;
+  margin-top: 10%;
+  min-height: 30vh;
   color: var(--FontColor);
 }
-.about{
+.about {
   text-align: center;
   max-width: 800px;
   margin: auto;
   font-size: 1em;
   padding: 2%;
 }
-.about a{
+.about a {
   font-size: 1em;
   color: var(--FontColor);
 }
-.about a:hover{
+.about a:hover {
   color: var(--Gold);
 }
 /* content */
 
-.content{
-  max-width: 1200px;
+.content {
   min-height: 500px;
   margin: auto 3%;
   background-color: var(--LightBlue);
@@ -89,7 +89,35 @@
 
 /* ------ history page -----*/
 
-.historyWhole{
-  margin: 12% auto ;
-  max-width: 1200px;
+/* ------- View Page ---------- */
+
+.viewRecipe p {
+  padding: 2% auto;
+}
+.viewRecipe {
+  padding-left: 1%;
+  padding-right: 1%;
+}
+.recipeTitle {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+  flex-wrap: wrap;
+}
+
+.imgWithIngredients {
+  display: flex;
+  justify-content: space-evenly;
+  width: 100%;
+  padding: 2%;
+  flex-wrap: wrap;
+}
+.imgWithIngredients img {
+  border-style: solid;
+  border-width: 4px;
+  border-radius: 20px;
+}
+.ingredients li {
+  list-style-type: circle;
 }
