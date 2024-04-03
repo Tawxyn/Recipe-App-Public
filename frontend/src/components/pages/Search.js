@@ -23,15 +23,18 @@ function SearchRecipes() {
       <header className="Header center">
         <h1>Search for Recipes</h1>
       </header>
-      <div className="content search">
-        <input
-          type="text"
-          value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
-          placeholder="Enter search query"
-        ></input>
-        <button onClick={handleSearch}>Search</button>
-        <div>
+      <div className="content">
+        <div className="search">
+          <input
+            className="searchBar"
+            type="text"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            placeholder="Enter search query"
+          ></input>
+          <button onClick={handleSearch}>Search</button>
+        </div>
+        <div className="results">
           {searchResults.length > 0 ? (
             <ul>
               {searchResults.map((result, index) => (
