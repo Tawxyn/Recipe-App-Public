@@ -17,7 +17,7 @@ except Exception as e:
     print(e)
 
 
-# import new data into colelctions // everytime go to "/" it will insert emily
+# import new data into collections // everytime go to "/" it will insert emily
 db = client.CSC131Data
 collection = db.Recipes
 
@@ -45,6 +45,7 @@ def test_find_collection():
                 'servings': recipe.get('servings', 'N/A'),
                 'readyInMinutes': recipe.get('readyInMinutes', 'N/A'),
                 'sourceUrl': recipe.get('sourceUrl', ''),
+                'image': recipe.get('image', ''),
                 # Add more fields as needed
             }
             formatted_recipes.append(formatted_recipe)
@@ -153,3 +154,12 @@ def index():
     user_collection.insert({'name': 'Cristina'})
     user_collection.insert({'name': 'Derek'})
     return '<h1>Added a User!</h1>'
+
+@main.route('/delete/<id>', methods=['DELETE'])
+def delete_document(id):
+    collection = mongo.db.your_collection_name
+    result = collection.delete_one({'_id': ObjectId(id)})
+    if result.deleted_count == 1:
+        return jsonify({'message': 'Document deleted successfully'}), 200
+    else:
+        return jsonify({'message': 'Document not found'}), 404

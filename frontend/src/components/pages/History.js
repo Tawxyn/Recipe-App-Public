@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import Nav from "../constants/NavBar";
 import Footer from "../constants/Footer";
 
+
+
 function RecipeList() {
   const [recipes, setRecipes] = useState([]);
 
@@ -16,13 +18,18 @@ function RecipeList() {
   return (
     <div>
       <Nav />
-      <div className="historyWhole center sidePage">
-        <h1>Recipes</h1>
+      <div className="HistoryWhole">
+        <h1>Recipe History</h1>
         <ul>
           {recipes.map((recipe) => (
             <li key={recipe._id}>
-              <h2>{recipe.title}</h2>
-              <p>{recipe.summary}</p>
+              <div className="historytitle">
+                <h2>{recipe.title}</h2>
+              </div>
+              <div className="historyimage">
+                <img src={recipe.image} alt={recipe.title} />
+              </div>
+              <p>{recipe.summary.replace(/<[^>]+>/g, "")}</p>
               <p>Servings: {recipe.servings}</p>
               <p>Ready in: {recipe.readyInMinutes} minutes</p>
               <a href={recipe.sourceUrl}>Source</a>
