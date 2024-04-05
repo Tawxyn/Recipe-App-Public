@@ -119,7 +119,7 @@ def view_recipe(recipeId):
     return "Recipe not found", 404
 
 # Route to add a specific recipe
-@main.route('/add_reicpe', methods=['POST'])
+@main.route('/add_recipe', methods=['POST'])
 def add_recipe():
     # Gets recipe ID from the form
     recipe_id = request.form.get('recipe_id')
@@ -141,12 +141,11 @@ def add_recipe():
         recipe_details = response.json()
 
         # Insert the recipe into MongoDB
-        inserted_recipe = collection.insert_one(recipe_details)
-        print(f"Inserted recipe ID: {recipe_id} into MongoDB collections")
+        collection.insert_one(recipe_details)
+        
+        return jsonify({'message': "Inserted recipe ID: {recipe_id} into MongoDB collections"}), 200
     else:
-        print(f"Failed to fetch recipe details for recipe ID: {recipe_id}")
-
-    return redirect(url_for('main.home', search_query=search_query))
+        return jsonify({'message': "Failed to fetch recipe details for recipe ID: {recipe_id}"}), 400
 
 @main.route('/index')
 def index():

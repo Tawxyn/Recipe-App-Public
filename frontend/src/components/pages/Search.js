@@ -10,12 +10,26 @@ function SearchRecipes() {
     try {
       const response = await fetch(`/search?query=${searchQuery}`);
       const data = await response.json();
-      console.log("recieved data:", data);
       setSearchResults(data.results);
     } catch (error) {
       console.error("Error fetching search results:", error);
     }
   };
+
+  const handleAddRecipe = async (recipeId) => {
+    const formData = new FormData();
+    formData.append('recipe_id', recipeId)
+
+    try {
+      await fetch('/add_recipe', {
+        method: 'POST',
+        body: formData,
+      });
+
+    } catch (error) {
+      console.error("Error adding recipe", error);
+    }
+};
 
   return (
     <div className="">
@@ -44,6 +58,7 @@ function SearchRecipes() {
                     <img src={result.image} alt={result.title} />
                   )}
                   <a href={`/recipe/${result.id}`}>View</a>
+                  <button onClick={() => handleAddRecipe(result.id)}>Add</button>
                 </li>
               ))}
             </ul>
