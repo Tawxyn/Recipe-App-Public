@@ -2,6 +2,9 @@ from flask import Blueprint, jsonify, render_template, request, redirect, url_fo
 from backend.ext import mongo
 from urllib.parse import unquote
 import requests
+from bson import ObjectId
+import logging
+
 
 # checking if the server connected -- should say "pinged your deplyment. you..."
 from pymongo.mongo_client import MongoClient
@@ -46,6 +49,7 @@ def test_find_collection():
                 'readyInMinutes': recipe.get('readyInMinutes', 'N/A'),
                 'sourceUrl': recipe.get('sourceUrl', ''),
                 'image': recipe.get('image', ''),
+                '_id': recipe.get('_id', '')
                 # Add more fields as needed
             }
             formatted_recipes.append(formatted_recipe)
@@ -148,11 +152,23 @@ def add_recipe():
         return jsonify({'message': "Failed to fetch recipe details for recipe ID: {recipe_id}"}), 400
 
 
-@main.route('/delete/<id>', methods=['DELETE'])
-def delete_document(id):
-    collection = mongo.db.your_collection_name
-    result = collection.delete_one({'_id': ObjectId(id)})
-    if result.deleted_count == 1:
-        return jsonify({'message': 'Document deleted successfully'}), 200
-    else:
-        return jsonify({'message': 'Document not found'}), 404
+@main.route('/delete/<string:id>', methods=['DELETE'])
+def delete_collection(id):
+    try:
+        logging.info(f"Attempting to delete document with id: {id}")
+        
+        # Convert the string id to ObjectId
+        obj_id = ObjectId(id)
+        logging.info(f"ObjectId: {obj_id}")
+
+        result = collection.delete_one({'_id': obj_id})  # Corrected line
+        if result.deleted_count == 1:
+            logging.info("Document deleted successfully")
+            return jsonify({'message': 'Document deleted successfully'}), 200
+        else:
+            logging.warning("Document not found")
+            return jsonify({'message': 'Document not found'}), 404
+    except Exception as e:
+        logging.error(f"Error deleting document: {e}")
+        return jsonify({'message': 'Error deleting document'}), 500
+
