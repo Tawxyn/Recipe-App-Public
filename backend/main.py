@@ -148,12 +148,6 @@ def add_recipe():
 
     return redirect(url_for('main.home', search_query=search_query))
 
-@main.route('/index')
-def index():
-    user_collection = mongo.db.users
-    user_collection.insert({'name': 'Cristina'})
-    user_collection.insert({'name': 'Derek'})
-    return '<h1>Added a User!</h1>'
 
 @main.route('/delete/<id>', methods=['DELETE'])
 def delete_document(id):
