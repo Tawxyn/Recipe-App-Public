@@ -42,7 +42,7 @@ function RecipeView() {
             </div>
             <div>
               <h3>Instructions</h3>
-              <p>{recipeDetails.summary.replace(/<[^>]+>/g, "")}</p>{" "}
+              <p>{recipeDetails.instructions.replace(/<[^>]+>/g, "")}</p>{" "}
             </div>
             {/* Removing HTML tags */}
           </div>
