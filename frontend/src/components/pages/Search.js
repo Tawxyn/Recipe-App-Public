@@ -1,6 +1,8 @@
 import React, { useState } from "react";
-import Nav from "../constants/NavBar";
 import Footer from "../constants/Footer";
+import Popup from 'reactjs-popup';
+import 'reactjs-popup/dist/index.css';
+
 
 function SearchRecipes() {
   const [searchQuery, setSearchQuery] = useState("");
@@ -32,7 +34,7 @@ function SearchRecipes() {
 
   return (
     <div className="">
-      <Nav />
+      
       <header className="Header center">
         <h1>Search for Recipes</h1>
       </header>
@@ -56,10 +58,18 @@ function SearchRecipes() {
                   {result.image && (
                     <img src={result.image} alt={result.title} />
                   )}
-                  <a href={`/recipe/${result.id}`}>View</a>
-                  <button onClick={() => handleAddRecipe(result.id)}>
-                    Add
-                  </button>
+                  <div className="recipeOptionButtons">
+                    <a href={`/recipe/${result.id}`}>View</a>
+                    <Popup trigger=
+                    {<button > + </button>}
+                     position="right center">
+                    <div>Save the recipe?</div>
+                    <button className="addRecipe" onClick={() => handleAddRecipe(result.id)}>
+                     Add Now
+                    </button>
+                   </Popup> 
+                  </div>
+                 
                 </li>
               ))}
             </ul>

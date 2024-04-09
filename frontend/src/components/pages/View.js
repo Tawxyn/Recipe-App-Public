@@ -6,6 +6,22 @@ function RecipeView() {
   const [recipeDetails, setRecipeDetails] = useState(null);
   const { recipeId } = useParams(); // Extracts the recipeID from the URL
 
+
+  const handleAddRecipe = async (recipeId) => {
+    const formData = new FormData();
+    formData.append("recipe_id", recipeId);
+
+    try {
+      await fetch("/add_recipe", {
+        method: "POST",
+        body: formData,
+      });
+    } catch (error) {
+      console.error("Error adding recipe", error);
+    }
+  };
+
+  
   useEffect(() => {
     // Flask endpoint created
     fetch(`/recipe/${recipeId}`)
@@ -41,8 +57,11 @@ function RecipeView() {
               </div>
             </div>
             <div>
-              <h3>Instructions</h3>
+              <h3>Description</h3>
               <p>{recipeDetails.instructions.replace(/<[^>]+>/g, "")}</p>{" "}
+               <button className="addRecipe" onClick={() => handleAddRecipe(recipeId)}>
+                     Add
+              </button> 
             </div>
             {/* Removing HTML tags */}
           </div>

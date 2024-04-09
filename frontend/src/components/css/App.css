@@ -132,6 +132,25 @@
   border-style: solid;
   border-width: 2px;
 }
+.recipeOptionButtons{
+  align-items: center;
+  width: 100%;
+  height: 50px;
+  display: flex;
+  justify-content: space-between;  
+}
+.recipeOptionButtons :nth-child(1), .recipeOptionButtons button{
+  border-style: solid ;
+  border-radius: 20px;
+  background-color: var(--Light);
+  padding: 1% 3%;
+  border-color: var(--Gray);
+  transition: .3s;
+  margin: auto 20px;
+}
+.recipeOptionButtons :nth-child(1):hover, .recipeOptionButtons button:hover{ 
+  box-shadow: 3px 3px 2px 1px var(--DarkBlue);
+}
 
 /* ------ history page -----*/
 .HistoryWhole {
