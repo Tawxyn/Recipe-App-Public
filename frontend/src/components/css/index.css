@@ -39,3 +39,6 @@ li {
   height: 3px;
   background-color: var(--Gold);
 }
+ul {
+  padding: 0;
+}

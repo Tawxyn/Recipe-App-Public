@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Nav from "../constants/NavBar";
 import Footer from "../constants/Footer";
-import axios from 'axios';
-
+import axios from "axios";
 
 function RecipeList() {
   const [recipes, setRecipes] = useState([]);
@@ -18,26 +17,27 @@ function RecipeList() {
   const handleDelete = (id) => {
     // Skip delete operation if ID is undefined
     if (!id) {
-        console.error('Recipe ID is undefined');
-        return;
+      console.error("Recipe ID is undefined");
+      return;
     }
 
     // Send DELETE request to delete recipe with given id
-    axios.delete(`/delete/${id}`)
-      .then(response => {
+    axios
+      .delete(`/delete/${id}`)
+      .then((response) => {
         console.log(response.data);
         // Handle success
         // Remove the deleted recipe from the recipes state
-        setRecipes(recipes.filter(recipe => recipe._id !== id));
+        setRecipes(recipes.filter((recipe) => recipe._id !== id));
       })
-      .catch(error => {
-        console.error('Error deleting recipe:', error);
+      .catch((error) => {
+        console.error("Error deleting recipe:", error);
         // Handle error
       });
-  }
+  };
 
   return (
-    <div> 
+    <div>
       <Nav />
       <div className="HistoryWhole">
         <h1>Recipe History</h1>
