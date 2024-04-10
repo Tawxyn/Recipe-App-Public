@@ -5,12 +5,14 @@
   left: 0;
   right: 0;
   z-index: 99;
-  background-image: linear-gradient(#00000025, #0f010e00);
+  background-image: linear-gradient(#f1f0f1ab, #f1f0f164);
   padding: 2px 32px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   color: var(--FontColor);
+  border-style: solid;
+  border-width: 1px;
 }
 .Nav nav ul {
   list-style: none;
@@ -147,6 +149,7 @@
   border-color: var(--Gray);
   transition: .3s;
   margin: auto 20px;
+  cursor: pointer;
 }
 .recipeOptionButtons :nth-child(1):hover, .recipeOptionButtons button:hover{ 
   box-shadow: 3px 3px 2px 1px var(--DarkBlue);
