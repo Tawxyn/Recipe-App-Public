@@ -8,7 +8,6 @@ function CreateRecipe() {
         summary: '',
         servings: '',
         readyInMinutes: '',
-        image: '',
         _id: ''
     });
 
@@ -20,7 +19,6 @@ function CreateRecipe() {
         formData.append('summary', info.summary);
         formData.append('servings', info.servings);
         formData.append('readyInMinutes', info.readyInMinutes);
-        formData.append('image', info.image); // Assuming 'info.image' is the file object
     
         fetch(`/create-recipe`, {
             method: 'POST',
@@ -96,16 +94,6 @@ function CreateRecipe() {
                         onChange={(e) => setInfo({ ...info, readyInMinutes: e.target.value})}
                         className="form-control"
                         placeholder="Total cook time"
-                    >
-                    </input>
-                </div>
-                <div className="my-1">
-                <input 
-                        type="file"
-                        accept="image/*"
-                        onChange={(e) => setInfo({ ...info, image: e.target.files[0] })}
-                        className="form-control"
-                        placeholder="Upload image"
                     >
                     </input>
                 </div>

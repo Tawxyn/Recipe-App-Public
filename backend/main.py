@@ -107,21 +107,11 @@ def search_recipes(query):
 
 @main.route('/create-recipe', methods=['POST'])
 def create_recipe():
-    if 'image' in request.files:
-        image = request.files['image']
-        filename = secure_filename(image.filename)
-        image_path = os.path.join('backend','static', 'images', filename)
-        image.save(image_path)
-        image_path = os.path.join('static', 'images', filename)
-        image.save(image_path)
-        print("saved image to ", image_path)
-
     new_recipe = {
         'title': request.form['title'],
         'summary': request.form['summary'],
         'servings': request.form['servings'],
         'readyInMinutes': request.form['readyInMinutes'],
-        'image': image_path
     }
     # Insert recipe into mongoDB
     result = collection.insert_one(new_recipe)
