@@ -1,10 +1,10 @@
-from flask import Blueprint, jsonify, render_template, request, redirect, url_for
+from flask import Blueprint, jsonify, request
+from werkzeug.utils import secure_filename
 from backend.ext import mongo
 from urllib.parse import unquote
 import requests
 from bson import ObjectId
-import logging
-
+import logging, re, os
 
 # checking if the server connected -- should say "pinged your deplyment. you..."
 from pymongo.mongo_client import MongoClient
@@ -29,9 +29,14 @@ main = Blueprint('main', __name__)
 #spoonacular API key
 API_KEY = 'ead2b30b6df1428085083e3ec1a90fb7'
 
+# Cleans html tags
+def strip_html_tags(text):
+    clean = re.compile('<.*?>')
+    return re.sub(clean, '', text)
+
 @main.route('/test_find_collection')
 def test_find_collection():
-    try:
+    try:  
         # Attempt to query the database and fetch all recipes
         recipes = list(collection.find({}))
 
@@ -44,7 +49,7 @@ def test_find_collection():
         for recipe in recipes:
             formatted_recipe = {
                 'title': recipe.get('title', 'Untitled'),
-                'summary': recipe.get('summary', 'No summary available'),
+                'summary': strip_html_tags(recipe.get('summary', 'No summary available')),
                 'servings': recipe.get('servings', 'N/A'),
                 'readyInMinutes': recipe.get('readyInMinutes', 'N/A'),
                 'sourceUrl': recipe.get('sourceUrl', ''),
@@ -53,6 +58,7 @@ def test_find_collection():
                 # Add more fields as needed
             }
             formatted_recipes.append(formatted_recipe)
+            
 
          # Return the list of recipes as JSON response
         return jsonify({"success": True, "recipes": formatted_recipes})
@@ -99,6 +105,29 @@ def search_recipes(query):
     print(response.json())
     return []
 
+@main.route('/create-recipe', methods=['POST'])
+def create_recipe():
+    if 'image' in request.files:
+        image = request.files['image']
+        filename = secure_filename(image.filename)
+        image_path = os.path.join('backend','static', 'images', filename)
+        image.save(image_path)
+        image_path = os.path.join('static', 'images', filename)
+        image.save(image_path)
+        print("saved image to ", image_path)
+
+    new_recipe = {
+        'title': request.form['title'],
+        'summary': request.form['summary'],
+        'servings': request.form['servings'],
+        'readyInMinutes': request.form['readyInMinutes'],
+        'image': image_path
+    }
+    # Insert recipe into mongoDB
+    result = collection.insert_one(new_recipe)
+
+    return jsonify({"message": "Recipe created", "_id": str(result.inserted_id)})
+
 # Route to view a specific recipe given its ID
 @main.route('/recipe/<int:recipeId>', methods=['GET'])
 def view_recipe(recipeId):
@@ -127,8 +156,6 @@ def view_recipe(recipeId):
 def add_recipe():
     # Gets recipe ID from the form
     recipe_id = request.form.get('recipe_id')
-
-    search_query = request.form.get('search_query')
 
     # Build the URL to get information about the specific recipe ID from Spoonacular
     url = f'https://api.spoonacular.com/recipes/{recipe_id}/information'

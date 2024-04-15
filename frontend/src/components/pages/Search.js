@@ -45,7 +45,7 @@ function SearchRecipes() {
             type="text"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            placeholder="Enter search query"
+            placeholder="Enter food"
           ></input>
           <button onClick={handleSearch}>Search</button>
         </div>
@@ -74,7 +74,7 @@ function SearchRecipes() {
               ))}
             </ul>
           ) : (
-            <p>No results found</p>
+            <p>No recipes found</p>
           )}
         </div>
       </div>
