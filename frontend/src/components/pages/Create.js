@@ -52,56 +52,63 @@ function CreateRecipe() {
 
   return (
     <div>
-      <div className="Create recipe page">
-        <h1>Create a Recipe</h1>
-        <ul>
-            <p>Create your recipe here</p>
-            <form onSubmit={handleSubmit} className="card card-body">
-                <div className="my-1">
-                    <input 
-                        type="text"
-                        value ={info.title}
-                        onChange={(e) => setInfo({ ...info, title: e.target.value})}
-                        className="form-control"
-                        placeholder="Title"
-                    >
-                    </input>
+      <div className="CreateRecipePage">
+        <div className="createTitle">
+            <h1>Create a Recipe</h1>
+        </div>
+        
+            <ul>
+                <p>Create your recipe here</p>
+                <div className="createRecipeCard">
+                    <form onSubmit={handleSubmit} className="card card-body">
+                        <div className="my-1">
+                            <input 
+                                
+                                type="text"
+                                value ={info.title}
+                                onChange={(e) => setInfo({ ...info, title: e.target.value})}
+                                className="form-control"
+                                placeholder="Title"
+                            >
+                            </input>
+                        </div>
+                        <div className="my-1">
+                        <input 
+                                type="text"
+                                value ={info.summary}
+                                onChange={(e) => setInfo({ ...info, summary: e.target.value})}
+                                className="form-control"
+                                placeholder="Summary"
+                            >
+                            </input>
+                        </div>
+                        <div className="my-1">
+                        <input 
+                                type="text"
+                                value ={info.servings}
+                                onChange={(e) => setInfo({ ...info, servings: e.target.value})}
+                                className="form-control"
+                                placeholder="Servings (e.g. 4)"
+                            >
+                            </input>
+                        </div>
+                        <div className="my-1">
+                        <input 
+                                type="text"
+                                value ={info.readyInMinutes}
+                                onChange={(e) => setInfo({ ...info, readyInMinutes: e.target.value})}
+                                className="form-control"
+                                placeholder="Total cook time (min.)"
+                            >
+                            </input>
+                        </div>
+                        <button type="submit" className="btn btn-primary createRecipeButton">
+                            Create
+                        </button>
+                    </form>
                 </div>
-                <div className="my-1">
-                <input 
-                        type="text"
-                        value ={info.summary}
-                        onChange={(e) => setInfo({ ...info, summary: e.target.value})}
-                        className="form-control"
-                        placeholder="Summary"
-                    >
-                    </input>
-                </div>
-                <div className="my-1">
-                <input 
-                        type="text"
-                        value ={info.servings}
-                        onChange={(e) => setInfo({ ...info, servings: e.target.value})}
-                        className="form-control"
-                        placeholder="Servings"
-                    >
-                    </input>
-                </div>
-                <div className="my-1">
-                <input 
-                        type="text"
-                        value ={info.readyInMinutes}
-                        onChange={(e) => setInfo({ ...info, readyInMinutes: e.target.value})}
-                        className="form-control"
-                        placeholder="Total cook time"
-                    >
-                    </input>
-                </div>
-                <button type="submit" className="btn btn-primary">
-                    Create
-                </button>
-            </form>
-        </ul>
+            </ul>
+        
       </div>
       <Footer />
     </div>

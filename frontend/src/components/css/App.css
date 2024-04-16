@@ -118,7 +118,7 @@
   flex-direction: column;
   align-items: center;
   padding: 1%;
-  margin: 4%;
+  margin: 3%;
   border-color: var(--FontColor);
   border-style: solid;
   border-radius: 20px;
@@ -211,4 +211,54 @@
 }
 .ingredients li {
   list-style-type: circle;
+}
+/* ------- Create page-------- */
+
+.CreateRecipePage {
+  height: 90vh;
+  display: flex;
+  flex-direction: column;
+  max-width: 1200px;
+  align-items: center;
+  text-align: center;
+  margin: auto;
+}
+.createTitle{
+  padding: 150px 2% 0px ;
+}
+.createRecipeCard{
+  background-color: var(--LightBlue);
+  height: 200px;
+  width: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px;
+  border-width: 2px;
+  border-style: solid;
+  border-color: var(--Light);
+  box-shadow: 10px 10px 2px 1px var(--Gold);
+  transition: 0.3s;
+}
+.createRecipeCard:hover {
+  box-shadow: -10px 10px 2px 1px var(--Gold);
+}
+.createRecipeButton{
+  background-color: var(--Light);
+  border-style: ridge;
+  border-color: var(--DarkBlue);
+  cursor: pointer;
+  transition: 0.3s;
+  border-radius: 10px;
+  padding: 3%;
+}
+.createRecipeButton:hover{
+  background-color: var(--Gold);
+  border-color: var(--Light);
+}
+.form-control{
+  margin: 2%;
+  padding: 2%;
+  border-style: inherit;
+  border-radius: 2px;
 }
