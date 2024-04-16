@@ -51,7 +51,7 @@
   border-left: 0;
   border-right: 0;
   border-bottom: 0;
-  margin-top: 2%;
+  margin-top: 1%;
 }
 
 /* ---- Home.js ----- */
@@ -222,6 +222,8 @@
   align-items: center;
   text-align: center;
   margin: auto;
+  background-image: radial-gradient(black 1px, transparent 0);
+  background-size: 40px 40px;
 }
 .createTitle{
   padding: 150px 2% 0px ;
