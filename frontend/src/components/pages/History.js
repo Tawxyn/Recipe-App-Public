@@ -5,6 +5,9 @@ import axios from "axios";
 
 function RecipeList() {
   const [recipes, setRecipes] = useState([]);
+  const [editRecipe, setEditRecipe] = useState(null); // State to store the recipe being edited
+  const [editedTitle, setEditedTitle] = useState(""); // State to store the edited title
+  const [editedSummary, setEditedSummary] = useState(""); // State to store the edited summary
 
   useEffect(() => {
     // Fetch recipes from Flask endpoint
@@ -36,6 +39,34 @@ function RecipeList() {
       });
   };
 
+  const handleEdit = (recipe) => {
+    console.log("Editing recipe:", recipe);
+    // Set the recipe being edited in state
+    setEditRecipe(recipe);
+    // Initialize the edited title and summary with the current values
+    setEditedTitle(recipe.title);
+    setEditedSummary(recipe.summary);
+  };
+
+  const handleSaveEdit = () => {
+    console.log("Saving edited recipe:", editRecipe);
+    // Update the recipe with the edited title and summary
+    const updatedRecipe = { ...editRecipe, title: editedTitle, summary: editedSummary };
+    axios
+      .put(`/edit/${editRecipe._id}`, updatedRecipe)
+      .then((response) => {
+        console.log(response.data);
+        // Update the recipes state with the edited recipe
+        setRecipes(recipes.map((recipe) => (recipe._id === editRecipe._id ? updatedRecipe : recipe)));
+        // Close the modal
+        setEditRecipe(null);
+      })
+      .catch((error) => {
+        console.error("Error updating recipe:", error);
+        // Handle error
+      });
+  };
+
   return (
     <div>
       <Nav />
@@ -55,11 +86,27 @@ function RecipeList() {
               <p>Servings: {recipe.servings}</p>
               <p>Ready in: {recipe.readyInMinutes} minutes</p>
               <a href={recipe.sourceUrl}>Source</a>
+              <button onClick={() => handleEdit(recipe)}>Edit</button>
               <button onClick={() => handleDelete(recipe._id)}>Delete</button>
             </li>
           ))}
         </ul>
       </div>
+      {editRecipe && (
+        console.log("Modal is rendered", editRecipe),
+        <div className="modal">
+          <div className="modal-content">
+            <h2>Edit Recipe</h2>
+            <label>Title:</label>
+            <input type="text" value={editedTitle} onChange={(e) => setEditedTitle(e.target.value)} />
+            <label>Summary:</label>
+            <textarea value={editedSummary} onChange={(e) => setEditedSummary(e.target.value)} />
+            <button onClick={handleSaveEdit}>Save</button>
+            <button onClick={() => setEditRecipe(null)}>Cancel</button>
+          </div>
+        </div>
+      )}
+
       <Footer />
     </div>
   );

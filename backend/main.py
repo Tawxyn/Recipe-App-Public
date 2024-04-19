@@ -5,6 +5,8 @@ import requests
 from bson import ObjectId
 import logging
 
+#Start Logging 
+logging.basicConfig(level=logging.INFO)
 
 # checking if the server connected -- should say "pinged your deplyment. you..."
 from pymongo.mongo_client import MongoClient
@@ -25,6 +27,7 @@ db = client.CSC131Data
 collection = db.Recipes
 
 main = Blueprint('main', __name__)
+
 
 #spoonacular API key
 API_KEY = 'ead2b30b6df1428085083e3ec1a90fb7'
@@ -61,7 +64,7 @@ def test_find_collection():
 
 @main.route('/', methods=['GET', 'POST'])
 def home():
-    return 
+    return "Welcome to Return Page"
 
 @main.route('/search', methods=['GET'])
 def search():
@@ -157,11 +160,11 @@ def delete_collection(id):
     try:
         logging.info(f"Attempting to delete document with id: {id}")
         
-        # Convert the string id to ObjectId
+        # Logs recipe ID for errors 
         obj_id = ObjectId(id)
         logging.info(f"ObjectId: {obj_id}")
 
-        result = collection.delete_one({'_id': obj_id})  # Corrected line
+        result = collection.delete_one({'_id': obj_id})  
         if result.deleted_count == 1:
             logging.info("Document deleted successfully")
             return jsonify({'message': 'Document deleted successfully'}), 200
@@ -171,4 +174,37 @@ def delete_collection(id):
     except Exception as e:
         logging.error(f"Error deleting document: {e}")
         return jsonify({'message': 'Error deleting document'}), 500
+
+@main.route('/edit/<string:id>', methods=['PUT'])
+def edit_recipe(id):
+    try:
+        # Log the attempt to edit the document
+        logging.info(f"Attempting to edit document: {id}")
+        
+        # Extract the updated recipe details from the request JSON
+        updated_recipe = request.json
+
+        # Ensure that the ID provided is a valid ObjectId
+        obj_id = ObjectId(id)
+        logging.info(f"ObjectId: {obj_id}")
+
+        # Remove the _id field from the updated recipe (if present)
+        updated_recipe.pop('_id', None)
+
+        # Update the recipe in the MongoDB collection
+        result = collection.update_one({'_id': obj_id}, {'$set': updated_recipe})
+
+        # Check if the update operation modified a document
+        if result.modified_count == 1:
+            logging.info("Recipe updated successfully")
+            return jsonify({'message': 'Recipe updated successfully'}), 200
+        else:
+            # If no document was modified, return a 404 status
+            logging.warning("Recipe not found")
+            return jsonify({'message': 'Recipe not found'}), 404
+    except Exception as e:
+        # If any error occurs during the update process, return a 500 status
+        logging.error(f'Error updating recipe: {str(e)}')
+        return jsonify({'message': f'Error updating recipe: {str(e)}'}), 500
+
 
