@@ -16,6 +16,9 @@ function Nav() {
           <li>
             <Link to="/search">Search</Link>
           </li>
+          <li>
+            <Link to="/create-recipe">Create Recipe</Link>
+          </li>
           {/* Add more navigation links as needed */}
         </ul>
       </nav>

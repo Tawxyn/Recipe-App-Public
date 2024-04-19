@@ -35,7 +35,7 @@ function RecipeList() {
       })
       .catch((error) => {
         console.error("Error deleting recipe:", error);
-        // Handle error
+        // Handle error //.replace(/<[^>]+>/g, "")
       });
   };
 
@@ -82,7 +82,7 @@ function RecipeList() {
               <div className="historyimage">
                 <img src={recipe.image} alt={recipe.title} />
               </div>
-              <p>{recipe.summary.replace(/<[^>]+>/g, "")}</p>
+              <p>{recipe.summary}</p> 
               <p>Servings: {recipe.servings}</p>
               <p>Ready in: {recipe.readyInMinutes} minutes</p>
               <a href={recipe.sourceUrl}>Source</a>

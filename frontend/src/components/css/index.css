@@ -5,7 +5,7 @@
   --FontColor: #010101;
   --LightBlue: #2a4e88;
   --Gray: #2d2d2d;
-  --DarkBlue: #01054d;
+  --DarkBlue: rgb(18, 39, 87);
 }
 body {
   margin: 0;
