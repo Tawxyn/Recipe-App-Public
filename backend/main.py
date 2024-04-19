@@ -4,14 +4,10 @@ from backend.ext import mongo
 from urllib.parse import unquote
 import requests
 from bson import ObjectId
-<<<<<<< HEAD
-import logging
+import logging, re, os
 
 #Start Logging 
 logging.basicConfig(level=logging.INFO)
-=======
-import logging, re, os
->>>>>>> b781cc94d3b3c48a63ac54b7620b1523db284ca2
 
 # checking if the server connected -- should say "pinged your deplyment. you..."
 from pymongo.mongo_client import MongoClient
