@@ -1,12 +1,10 @@
 import React, { useState } from "react";
-import Nav from "../constants/NavBar";
 import Footer from "../constants/Footer";
 import { Link } from "react-router-dom";
 
 function Home() {
   return (
     <div className="App">
-      <Nav />
       <div className="home">
         <header className="Header center">
           <h1>Ctrl-Alt-Defeat Recipes</h1>

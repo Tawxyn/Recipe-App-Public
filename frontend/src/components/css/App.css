@@ -58,9 +58,11 @@
 
 .home {
   min-height: 70vh;
+  background-image: radial-gradient(black 1px, transparent 0);
+  background-size: 40px 40px;
 }
 .Header {
-  margin-top: 8%;
+  padding-top: 8%;
   min-height: 20vh;
   color: var(--FontColor);
 }
@@ -218,7 +220,6 @@
   height: 90vh;
   display: flex;
   flex-direction: column;
-
   align-items: center;
   text-align: center;
   margin: auto;
@@ -230,17 +231,31 @@
 }
 .createRecipeCard{
   background-color: var(--LightBlue);
-  height: 200px;
+  height: 300px;
   width: 300px;
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
   border-radius: 20px;
   border-width: 2px;
   border-style: solid;
   border-color: var(--Light);
   box-shadow: 10px 10px 2px 1px var(--Gold);
   transition: 0.3s;
+  color: var(--Light);
+}
+.card{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 200px;
+}
+
+.my-1 input{
+  width: 190px;
+  background-color: var(--Light);
+  padding: 1%;
 }
 .createRecipeCard:hover {
   box-shadow: -10px 10px 2px 1px var(--Gold);

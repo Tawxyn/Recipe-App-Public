@@ -60,8 +60,9 @@ function CreateRecipe() {
         </div>
         
             <ul>
-                <p>Create your recipe here</p>
+                
                 <div className="createRecipeCard">
+                    <h3>Create your recipe here</h3>
                     <form onSubmit={handleSubmit} className="card card-body">
                         <div className="my-1">
                             <input 
@@ -104,7 +105,7 @@ function CreateRecipe() {
                             >
                             </input>
                         </div>
-                        <div className="my-1">
+                        <div className=" my-1 imageInput">
                         <input 
                                 type="file"
                                 accept="image/*"
