@@ -129,21 +129,42 @@
 .search {
   display: flex;
   justify-content: center;
+  margin-top: 20px; 
 }
+
 .searchBar {
-  padding: 1%;
   width: 50%;
-  height: 20px;
+  padding: 8px; 
+  background-color: var(--);
   border-style: solid;
-  border-color: var(--FontColor);
+  border-width: 2px;
+  border-color: var(--Light);
+  border-radius: 20px;
+  box-shadow: 10px 10px 2px 1px var(--Gold);
+  transition: 0.3s;
 }
+
+.searchBar:hover {
+  box-shadow: -10px 10px 2px 1px var(--Gold);
+}
+
 .search button {
   background-color: var(--Light);
   border-style: solid;
-}
-.search button:hover {
+  border-color: var(--DarkBlue);
   cursor: pointer;
+  transition: 0.3s;
+  border-radius: 10px;
+  padding: 8px 20px; 
+  margin-left: 12px;
 }
+
+.search button:hover {
+  background-color: var(--Gold);
+  border-color: var(--Light);
+}
+/* -------- Results --------- */
+
 .results ul {
   display: flex;
   flex-wrap: wrap;
