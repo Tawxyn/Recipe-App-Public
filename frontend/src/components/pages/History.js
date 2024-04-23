@@ -8,8 +8,8 @@ function RecipeList() {
   const [editRecipe, setEditRecipe] = useState(null); // State to store the recipe being edited
   const [editedTitle, setEditedTitle] = useState(""); // State to store the edited title
   const [editedSummary, setEditedSummary] = useState(""); // State to store the edited summary
-  const [editedServings, setEditedServings] = useState(0); // State to store the edited servings
-  const [editedReadyInMinutes, setEditedReadyInMinutes] = useState(0); // State to store the edited time to create
+  const [editedServings, setEditedServings] = useState(""); // State to store the edited servings
+  const [editedReadyInMinutes, setEditedReadyInMinutes] = useState(""); // State to store the edited time to create
 
   useEffect(() => {
     // Fetch recipes from Flask endpoint
@@ -48,6 +48,8 @@ function RecipeList() {
     // Initialize the edited title and summary with the current values
     setEditedTitle(recipe.title);
     setEditedSummary(recipe.summary);
+    setEditedServings(recipe.servings ? recipe.servings.toString() : "");
+    setEditedReadyInMinutes(recipe.readyInMinutes ? recipe.readyInMinutes.toString() : "");
   };
 
   // Set save towards backend change 
@@ -58,6 +60,8 @@ function RecipeList() {
       ...editRecipe,
       title: editedTitle,
       summary: editedSummary,
+      servings: parseInt(editedServings), 
+      readyInMinutes: parseInt(editedReadyInMinutes), 
     };
     axios
       .put(`/edit/${editRecipe._id}`, updatedRecipe)
@@ -117,8 +121,29 @@ function RecipeList() {
               />
               <label>Summary:</label>
               <textarea
+                type="text"
                 value={editedSummary}
                 onChange={(e) => setEditedSummary(e.target.value)}
+              />
+              <label>Servings:</label>
+              <textarea
+                type="number"
+                value={editedServings}
+                // Adjusted to handle Nan error 
+                onChange={(e) => {
+                  const value = e.target.value;
+                  setEditedServings(value === "" ? "" : parseInt(value));
+                }}
+              />
+              <label>ReadyInMinutes:</label>
+              <textarea
+                type="number"
+                value={editedReadyInMinutes}
+                // Adjusted to handle Nan error 
+                onChange={(e) => {
+                  const value = e.target.value;
+                  setEditedReadyInMinutes(value === "" ? "" : parseInt(value));
+                }}
               />
               <button onClick={handleSaveEdit}>Save</button>
               <button onClick={() => setEditRecipe(null)}>Cancel</button>
