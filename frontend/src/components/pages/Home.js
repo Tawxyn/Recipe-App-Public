@@ -1,17 +1,16 @@
 import React, { useState } from "react";
-import Nav from "../constants/NavBar";
 import Footer from "../constants/Footer";
 import { Link } from "react-router-dom";
+import RecipeImages from "../image/recipes.png";
 
 function Home() {
   return (
     <div className="App">
-      <Nav />
       <div className="home">
         <header className="Header center">
           <h1>Ctrl-Alt-Defeat Recipes</h1>
         </header>
-        <div className="about">
+        <div className="about blueCard">
           <h3>
             <Link to="/search">Search</Link> | Cook |{" "}
             <Link to="/history">Save</Link> | Enjoy
@@ -25,6 +24,11 @@ function Home() {
             pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
             culpa qui officia deserunt mollit anim id est laborum.
           </p>
+          <img
+            src={RecipeImages}
+            className="recipeImageSlide"
+            alt="recipe images"
+          />
         </div>
       </div>
       <Footer />

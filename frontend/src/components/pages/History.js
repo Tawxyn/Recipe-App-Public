@@ -54,13 +54,21 @@ function RecipeList() {
   const handleSaveEdit = () => {
     console.log("Saving edited recipe:", editRecipe);
     // Update the recipe with the edited title and summary
-    const updatedRecipe = { ...editRecipe, title: editedTitle, summary: editedSummary };
+    const updatedRecipe = {
+      ...editRecipe,
+      title: editedTitle,
+      summary: editedSummary,
+    };
     axios
       .put(`/edit/${editRecipe._id}`, updatedRecipe)
       .then((response) => {
         console.log(response.data);
         // Update the recipes state with the edited recipe
-        setRecipes(recipes.map((recipe) => (recipe._id === editRecipe._id ? updatedRecipe : recipe)));
+        setRecipes(
+          recipes.map((recipe) =>
+            recipe._id === editRecipe._id ? updatedRecipe : recipe
+          )
+        );
         // Close the modal
         setEditRecipe(null);
       })
@@ -85,7 +93,7 @@ function RecipeList() {
               <div className="historyimage">
                 <img src={recipe.image} alt={recipe.title} />
               </div>
-              <p>{recipe.summary.replace(/<[^>]+>/g, "")}</p>
+              <p>{recipe.summary}</p>
               <p>Servings: {recipe.servings}</p>
               <p>Ready in: {recipe.readyInMinutes} minutes</p>
               <a href={recipe.sourceUrl}>Source</a>
@@ -95,20 +103,28 @@ function RecipeList() {
           ))}
         </ul>
       </div>
-      {editRecipe && (
-        console.log("Modal is rendered", editRecipe),
-        <div className="modal">
-          <div className="modal-content">
-            <h2>Edit Recipe</h2>
-            <label>Title:</label>
-            <input type="text" value={editedTitle} onChange={(e) => setEditedTitle(e.target.value)} />
-            <label>Summary:</label>
-            <textarea value={editedSummary} onChange={(e) => setEditedSummary(e.target.value)} />
-            <button onClick={handleSaveEdit}>Save</button>
-            <button onClick={() => setEditRecipe(null)}>Cancel</button>
+      {editRecipe &&
+        (console.log("Modal is rendered", editRecipe),
+        (
+          <div className="modal">
+            <div className="modal-content">
+              <h2>Edit Recipe</h2>
+              <label>Title:</label>
+              <input
+                type="text"
+                value={editedTitle}
+                onChange={(e) => setEditedTitle(e.target.value)}
+              />
+              <label>Summary:</label>
+              <textarea
+                value={editedSummary}
+                onChange={(e) => setEditedSummary(e.target.value)}
+              />
+              <button onClick={handleSaveEdit}>Save</button>
+              <button onClick={() => setEditRecipe(null)}>Cancel</button>
+            </div>
           </div>
-        </div>
-      )}
+        ))}
 
       <Footer />
     </div>

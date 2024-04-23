@@ -15,6 +15,22 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: var(--Background);
+  background-image: radial-gradient(rgba(0, 0, 0, 0.301) 1px, transparent 0);
+  background-size: 40px 40px;
+  background-position: center;
+  background-attachment: fixed;
+}
+h1 {
+  font-family: "Source Code Pro", monospace;
+  font-optical-sizing: auto;
+  font-weight: 700;
+  font-style: normal;
+}
+h2 {
+  font-family: "Source Code Pro", monospace;
+  font-optical-sizing: auto;
+  font-weight: 700;
+  font-style: normal;
 }
 a {
   font-size: 1.3em;
@@ -42,7 +58,6 @@ li {
 ul {
   padding: 0;
 }
-button{
- 
+button {
   font-size: 1.3em;
 }

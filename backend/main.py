@@ -2,9 +2,14 @@ from flask import Blueprint, jsonify, request
 from werkzeug.utils import secure_filename
 from backend.ext import mongo
 from urllib.parse import unquote
+from dotenv import load_dotenv
 import requests
 from bson import ObjectId
 import logging, re, os
+import boto3, botocore
+
+# Loads environment variables from .env file
+load_dotenv()
 
 #Start Logging 
 logging.basicConfig(level=logging.INFO)
@@ -26,6 +31,25 @@ except Exception as e:
 # import new data into collections // everytime go to "/" it will insert emily
 db = client.CSC131Data
 collection = db.Recipes
+
+# Connection to AWS
+s3 = boto3.client(
+    "s3",
+    aws_access_key_id = os.getenv('AWS_ACCESS_KEY'),
+    aws_secret_access_key = os.getenv('AWS_SECRET_ACCESS_KEY'),
+)
+
+# Testing AWS connection
+def list_buckets():
+    try:
+        # Lists buckets
+        response = s3.list_buckets()
+        for bucket in response['Buckets']:
+            print(f'Successsfully established connection to AWS S3')
+            print(f'Bucket Name: {bucket["Name"]}')
+    except Exception as e:
+        print(f"Error accessing AWS S3: {e}")
+list_buckets()
 
 main = Blueprint('main', __name__)
 
@@ -111,11 +135,32 @@ def search_recipes(query):
 
 @main.route('/create-recipe', methods=['POST'])
 def create_recipe():
+    if 'image' in request.files:
+        file = request.files['image']
+        filename = secure_filename(file.filename)
+        try:
+            # Uploads image to S3 Bucket
+            s3.upload_fileobj(
+                file,
+                os.getenv('AWS_BUCKET_NAME'),
+                filename,
+                ExtraArgs={
+                    "ContentType": file.content_type,
+                }
+            )
+            url = f"https://{os.getenv('AWS_BUCKET_NAME')}.s3.amazonaws.com/{filename}"
+            print(url)
+        except Exception as e:
+            print(f'Error uploading file to S3 bucket: {e}') 
+    # No file provided
+    else:
+        url = ''
     new_recipe = {
         'title': request.form['title'],
         'summary': request.form['summary'],
         'servings': request.form['servings'],
         'readyInMinutes': request.form['readyInMinutes'],
+        'image': url
     }
     # Insert recipe into mongoDB
     result = collection.insert_one(new_recipe)

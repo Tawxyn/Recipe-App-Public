@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&display=swap");
 /* ------ Nav Bar.js-------- */
 .Nav {
   position: fixed;
@@ -52,24 +53,44 @@
   border-right: 0;
   border-bottom: 0;
   margin-top: 1%;
+  background-color: var(--Background);
+}
+.Footer h3 {
+  font-family: "Source Code Pro", monospace;
+  font-optical-sizing: auto;
+  font-weight: 700;
+  font-style: normal;
 }
 
 /* ---- Home.js ----- */
 
 .home {
-  min-height: 70vh;
+  min-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 .Header {
-  margin-top: 8%;
+  padding-top: 8%;
   min-height: 20vh;
   color: var(--FontColor);
 }
 .about {
+  display: flex;
+  flex-direction: column;
   text-align: center;
-  max-width: 800px;
-  margin: auto;
   font-size: 1em;
   padding: 2%;
+  margin: auto 3%;
+  border-style: solid;
+  align-items: center;
+  overflow: hidden;
+  border-radius: 30px;
+  padding: 3%;
+  max-width: 1200px;
+  box-shadow: 10px 10px 2px 1px var(--LightBlue);
+  border-style: solid;
+  background-color: var(--Background);
 }
 .about a {
   font-size: 1em;
@@ -78,15 +99,30 @@
 .about a:hover {
   color: var(--Gold);
 }
+.recipeImageSlide {
+  display: flex;
+  width: 120%;
+  animation: slide 3.5s linear infinite alternate;
+}
+@keyframes slide {
+  from {
+    transform: translate(-90px, 0);
+  }
+  to {
+    transform: translate(90px, 0);
+  }
+}
 /* content */
-
 .content {
   min-height: 400px;
-  margin: auto 3%;
+  margin: auto;
   background-color: var(--LightBlue);
   color: var(--Light);
   border-radius: 30px;
   padding: 3%;
+  max-width: 1200px;
+  box-shadow: 10px 10px 2px 1px var(--Gold);
+  border-style: solid;
 }
 /* -------- Search --------- */
 
@@ -134,24 +170,26 @@
   border-style: solid;
   border-width: 2px;
 }
-.recipeOptionButtons{
+.recipeOptionButtons {
   align-items: center;
   width: 100%;
   height: 50px;
   display: flex;
-  justify-content: space-between;  
+  justify-content: space-between;
 }
-.recipeOptionButtons :nth-child(1), .recipeOptionButtons button{
-  border-style: solid ;
+.recipeOptionButtons :nth-child(1),
+.recipeOptionButtons button {
+  border-style: solid;
   border-radius: 20px;
   background-color: var(--Light);
   padding: 1% 3%;
   border-color: var(--Gray);
-  transition: .3s;
+  transition: 0.3s;
   margin: auto 20px;
   cursor: pointer;
 }
-.recipeOptionButtons :nth-child(1):hover, .recipeOptionButtons button:hover{ 
+.recipeOptionButtons :nth-child(1):hover,
+.recipeOptionButtons button:hover {
   box-shadow: 3px 3px 2px 1px var(--DarkBlue);
 }
 
@@ -215,37 +253,51 @@
 /* ------- Create page-------- */
 
 .CreateRecipePage {
-  height: 90vh;
+  min-height: 90vh;
   display: flex;
   flex-direction: column;
-
   align-items: center;
   text-align: center;
   margin: auto;
-  background-image: radial-gradient(black 1px, transparent 0);
-  background-size: 40px 40px;
 }
-.createTitle{
-  padding: 150px 2% 0px ;
+.createTitle {
+  padding: 150px 2% 0px;
 }
-.createRecipeCard{
+.createRecipeCard {
   background-color: var(--LightBlue);
-  height: 200px;
-  width: 300px;
+  min-height: 300px;
+  min-width: 300px;
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
   border-radius: 20px;
   border-width: 2px;
   border-style: solid;
   border-color: var(--Light);
   box-shadow: 10px 10px 2px 1px var(--Gold);
   transition: 0.3s;
+  padding: 20px;
+}
+.createRecipeCard h3 {
+  color: var(--Light);
+}
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-width: 200px;
+}
+
+.my-1 input {
+  width: 190px;
+  background-color: var(--Light);
+  padding: 1%;
 }
 .createRecipeCard:hover {
   box-shadow: -10px 10px 2px 1px var(--Gold);
 }
-.createRecipeButton{
+.createRecipeButton {
   background-color: var(--Light);
   border-style: ridge;
   border-color: var(--DarkBlue);
@@ -254,13 +306,20 @@
   border-radius: 10px;
   padding: 3%;
 }
-.createRecipeButton:hover{
+.createRecipeButton:hover {
   background-color: var(--Gold);
   border-color: var(--Light);
 }
-.form-control{
+.form-control {
   margin: 2%;
   padding: 2%;
   border-style: inherit;
   border-radius: 2px;
+}
+.summaryCreate textarea {
+  min-width: 190px;
+  padding: 1%;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
 }
