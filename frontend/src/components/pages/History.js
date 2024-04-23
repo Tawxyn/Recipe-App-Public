@@ -103,54 +103,44 @@ function RecipeList() {
               <a href={recipe.sourceUrl}>Source</a>
               <button onClick={() => handleEdit(recipe)}>Edit</button>
               <button onClick={() => handleDelete(recipe._id)}>Delete</button>
+
+              {/* Modal rendering */}
+              {editRecipe && editRecipe._id === recipe._id && (
+                <div className="modal">
+                  <div className="modal-content">
+                    <h2>Edit Recipe</h2>
+                    <label>Title:</label>
+                    <input
+                      type="text"
+                      value={editedTitle}
+                      onChange={(e) => setEditedTitle(e.target.value)}
+                    />
+                    <label>Summary:</label>
+                    <textarea
+                      value={editedSummary}
+                      onChange={(e) => setEditedSummary(e.target.value)}
+                    />
+                    <label>Servings:</label>
+                    <input
+                      type="number"
+                      value={editedServings}
+                      onChange={(e) => setEditedServings(e.target.value)}
+                    />
+                    <label>ReadyInMinutes:</label>
+                    <input
+                      type="number"
+                      value={editedReadyInMinutes}
+                      onChange={(e) => setEditedReadyInMinutes(e.target.value)}
+                    />
+                    <button onClick={handleSaveEdit}>Save</button>
+                    <button onClick={() => setEditRecipe(null)}>Cancel</button>
+                  </div>
+                </div>
+              )}
             </li>
           ))}
         </ul>
       </div>
-      {editRecipe &&
-        (console.log("Modal is rendered", editRecipe),
-        (
-          <div className="modal">
-            <div className="modal-content">
-              <h2>Edit Recipe</h2>
-              <label>Title:</label>
-              <input
-                type="text"
-                value={editedTitle}
-                onChange={(e) => setEditedTitle(e.target.value)}
-              />
-              <label>Summary:</label>
-              <textarea
-                type="text"
-                value={editedSummary}
-                onChange={(e) => setEditedSummary(e.target.value)}
-              />
-              <label>Servings:</label>
-              <textarea
-                type="number"
-                value={editedServings}
-                // Adjusted to handle Nan error 
-                onChange={(e) => {
-                  const value = e.target.value;
-                  setEditedServings(value === "" ? "" : parseInt(value));
-                }}
-              />
-              <label>ReadyInMinutes:</label>
-              <textarea
-                type="number"
-                value={editedReadyInMinutes}
-                // Adjusted to handle Nan error 
-                onChange={(e) => {
-                  const value = e.target.value;
-                  setEditedReadyInMinutes(value === "" ? "" : parseInt(value));
-                }}
-              />
-              <button onClick={handleSaveEdit}>Save</button>
-              <button onClick={() => setEditRecipe(null)}>Cancel</button>
-            </div>
-          </div>
-        ))}
-
       <Footer />
     </div>
   );
