@@ -8,10 +8,12 @@ function RecipeList() {
   const [editRecipe, setEditRecipe] = useState(null); // State to store the recipe being edited
   const [editedTitle, setEditedTitle] = useState(""); // State to store the edited title
   const [editedSummary, setEditedSummary] = useState(""); // State to store the edited summary
+  const [editedServings, setEditedServings] = useState(0); // State to store the edited servings
+  const [editedReadyInMinutes, setEditedReadyInMinutes] = useState(0); // State to store the edited time to create
 
   useEffect(() => {
     // Fetch recipes from Flask endpoint
-    fetch("/test_find_collection")
+    fetch("/fetch_data")
       .then((response) => response.json())
       .then((data) => setRecipes(data.recipes))
       .catch((error) => console.error("Error fetching recipes:", error));
@@ -35,10 +37,10 @@ function RecipeList() {
       })
       .catch((error) => {
         console.error("Error deleting recipe:", error);
-        // Handle error //.replace(/<[^>]+>/g, "")
+        // Handle error
       });
   };
-
+// Edit Logic 
   const handleEdit = (recipe) => {
     console.log("Editing recipe:", recipe);
     // Set the recipe being edited in state
@@ -48,6 +50,7 @@ function RecipeList() {
     setEditedSummary(recipe.summary);
   };
 
+  // Set save towards backend change 
   const handleSaveEdit = () => {
     console.log("Saving edited recipe:", editRecipe);
     // Update the recipe with the edited title and summary
@@ -62,11 +65,12 @@ function RecipeList() {
         setEditRecipe(null);
       })
       .catch((error) => {
+        // Log error match backend
         console.error("Error updating recipe:", error);
-        // Handle error
+        
       });
   };
-
+  
   return (
     <div>
       <Nav />
@@ -75,14 +79,13 @@ function RecipeList() {
         <ul>
           {recipes.map((recipe) => (
             <li key={recipe._id}>
-              {/* Rest of the code */}
               <div className="historytitle">
                 <h2>{recipe.title}</h2>
               </div>
               <div className="historyimage">
                 <img src={recipe.image} alt={recipe.title} />
               </div>
-              <p>{recipe.summary}</p> 
+              <p>{recipe.summary.replace(/<[^>]+>/g, "")}</p>
               <p>Servings: {recipe.servings}</p>
               <p>Ready in: {recipe.readyInMinutes} minutes</p>
               <a href={recipe.sourceUrl}>Source</a>

@@ -38,7 +38,7 @@ def strip_html_tags(text):
     clean = re.compile('<.*?>')
     return re.sub(clean, '', text)
 
-@main.route('/test_find_collection')
+@main.route('/fetch_data')
 def test_find_collection():
     try:  
         # Attempt to query the database and fetch all recipes
