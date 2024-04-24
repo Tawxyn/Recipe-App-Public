@@ -55,7 +55,7 @@ main = Blueprint('main', __name__)
 
 
 #spoonacular API key
-API_KEY = 'ead2b30b6df1428085083e3ec1a90fb7'
+API_KEY = 'b56fc22211c2469eb8f6f37d336cd7e2'
 
 # Cleans html tags
 def strip_html_tags(text):
@@ -112,7 +112,7 @@ def search_recipes(query):
     params = {
         'apiKey': API_KEY,
         'query': query,
-        'number': 5,
+        'number': 30,
         'instructionsRequired': True,
         'addRecipeInformation': True,
         'fillIngredients': True,
