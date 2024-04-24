@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 function Nav() {
   return (
     <div className="Nav">
-      <h2>Ctrl-alt-defeat</h2>
+      <h2>Ctrl-Alt-Defeat</h2>
       <nav>
         <ul>
           <li>
