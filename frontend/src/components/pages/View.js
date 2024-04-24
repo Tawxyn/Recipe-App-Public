@@ -38,7 +38,7 @@ function RecipeView() {
       <div className="viewRecipe sidePage center">
         <h1>Recipe Information</h1>
         {recipeDetails ? (
-          <div>
+          <div className="recipeViewCard">
             <div className="recipeTitle">
               <h1>{recipeDetails.title}</h1>
               <div className="divider"></div>
@@ -56,7 +56,7 @@ function RecipeView() {
                 </ul>
               </div>
             </div>
-            <div>
+            <div className="description">
               <h3>Description</h3>
               <p>{recipeDetails.instructions.replace(/<[^>]+>/g, "")}</p>{" "}
                <button className="addRecipe" onClick={() => handleAddRecipe(recipeId)}>

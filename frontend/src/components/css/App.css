@@ -115,7 +115,7 @@
 /* content */
 .content {
   min-height: 400px;
-  margin: auto;
+  margin: 3% auto ; 
   background-color: var(--LightBlue);
   color: var(--Light);
   border-radius: 30px;
@@ -134,18 +134,17 @@
 
 .searchBar {
   width: 50%;
-  padding: 8px; 
-  background-color: var(--);
+  padding: 8px 22px; 
   border-style: solid;
   border-width: 2px;
-  border-color: var(--Light);
+  border-color: var(--FontColor);
   border-radius: 20px;
-  box-shadow: 10px 10px 2px 1px var(--Gold);
+  box-shadow: 5px 5px 2px 1px var(--Gold);
   transition: 0.3s;
 }
 
 .searchBar:hover {
-  box-shadow: -10px 10px 2px 1px var(--Gold);
+  box-shadow: -5px 5px 2px 1px var(--Gold);
 }
 
 .search button {
@@ -160,8 +159,9 @@
 }
 
 .search button:hover {
-  background-color: var(--Gold);
-  border-color: var(--Light);
+  border-color: var(--FontColor);
+  box-shadow: 5px 5px 2px 1px var(--Gold);
+
 }
 /* -------- Results --------- */
 
@@ -176,6 +176,8 @@
   align-items: center;
   padding: 1%;
   margin: 3%;
+  width: 350px;
+  text-align: center;
   border-color: var(--FontColor);
   border-style: solid;
   border-radius: 20px;
@@ -302,12 +304,10 @@
 }
 /* ------- View Page ---------- */
 
-.viewRecipe p {
-  padding: 2% auto;
-}
+
 .viewRecipe {
-  padding-left: 1%;
-  padding-right: 1%;
+padding: 3%;
+  min-height: 90vh;
 }
 .recipeTitle {
   display: flex;
@@ -316,7 +316,6 @@
   text-align: center;
   flex-wrap: wrap;
 }
-
 .imgWithIngredients {
   display: flex;
   justify-content: space-evenly;
@@ -331,6 +330,19 @@
 }
 .ingredients li {
   list-style-type: circle;
+}
+.ingredients{
+  background-color: var(--LightGold);
+  background-size: 20px 20px;
+  background-image:
+    /* linear-gradient(to right, grey 1px, transparent 1px), */
+    linear-gradient(to bottom, rgba(128, 128, 128, 0.472) 1px, transparent 1px);
+  padding: 3%;
+  border-style: solid;
+  border-width: 10px;
+  border-radius: 20px;
+  border-left: 0;
+  border-right: 0;
 }
 /* ------- Create page-------- */
 
