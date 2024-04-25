@@ -405,9 +405,9 @@
   background-color: var(--Light);
   padding: 1%;
 }
-.createRecipeCard:hover {
+/* .createRecipeCard:hover {
   box-shadow: -10px 10px 2px 1px var(--Gold);
-}
+} */
 .createRecipeButton {
   background-color: var(--Light);
   border-style: ridge;
