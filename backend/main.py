@@ -17,9 +17,10 @@ logging.basicConfig(level=logging.INFO)
 # checking if the server connected -- should say "pinged your deplyment. you..."
 from pymongo.mongo_client import MongoClient
 from pymongo.server_api import ServerApi
-uri = "mongodb+srv://MikeO:1234@cluster0.xc8wzqa.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
+
+mongoUri = os.getenv('MONGO_URI')
 # Create a new client and connect to the server
-client = MongoClient(uri, server_api=ServerApi('1'))
+client = MongoClient(mongoUri, server_api=ServerApi('1'))
 # Send a ping to confirm a successful connection
 try:
     client.admin.command('ping')
@@ -55,7 +56,7 @@ main = Blueprint('main', __name__)
 
 
 #spoonacular API key
-API_KEY = 'b56fc22211c2469eb8f6f37d336cd7e2'
+API_KEY = os.getenv('SPOONACULAR_API_KEY')
 
 # Cleans html tags
 def strip_html_tags(text):
