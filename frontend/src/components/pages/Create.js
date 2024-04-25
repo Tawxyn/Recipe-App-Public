@@ -118,7 +118,7 @@ function CreateRecipe() {
                   placeholder="Upload image"
                 ></input>
               </div>
-              <button type="submit" className=" createRecipeButton">
+              <button type="submit" className="createRecipeButton">
                 Create
               </button>
             </form>

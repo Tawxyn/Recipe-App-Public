@@ -115,7 +115,7 @@
 /* content */
 .content {
   min-height: 400px;
-  margin: 3% auto ; 
+  margin: 3% auto;
   background-color: var(--LightBlue);
   color: var(--Light);
   border-radius: 30px;
@@ -129,12 +129,12 @@
 .search {
   display: flex;
   justify-content: center;
-  margin-top: 20px; 
+  margin-top: 20px;
 }
 
 .searchBar {
   width: 50%;
-  padding: 8px 22px; 
+  padding: 8px 22px;
   border-style: solid;
   border-width: 2px;
   border-color: var(--FontColor);
@@ -143,24 +143,26 @@
   transition: 0.3s;
 }
 
-.search button, .custom-select {
+.search button,
+.custom-select {
   background-color: var(--Light);
   border-style: solid;
   border-color: var(--FontColor);
   cursor: pointer;
   transition: 0.3s;
   border-radius: 20px;
-  padding: 8px 20px; 
+  padding: 8px 20px;
   margin-left: 20px;
   box-shadow: 5px 5px 2px 1px var(--Gold);
-
 }
 
-.search button:hover, .custom-select:hover, .searchBar:hover{
+.search button:hover,
+.custom-select:hover,
+.searchBar:hover {
   border-color: var(--FontColor);
   box-shadow: 0px 0px 1px 8px var(--Gold);
 }
-.custom-select{
+.custom-select {
   border-width: 2px;
 }
 /* -------- Results --------- */
@@ -226,11 +228,10 @@
   max-width: 1200px;
   padding: 2%;
   margin: 100px auto;
-  background-color: #FFFFF0;
+  background-color: #fffff0;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   border-radius: 10px;
 }
-
 .HistoryWhole > h1 {
   text-align: center;
   margin-top: 20px;
@@ -281,7 +282,9 @@
   text-align: center;
 }
 
-.editButton, .deleteButton {
+.editButton,
+.deleteButton,
+.printButton button {
   background-color: var(--LightBlue);
   border-style: ridge;
   border-color: var(--LightBlue);
@@ -293,7 +296,9 @@
   font-weight: bold;
 }
 
-.editButton:hover, .deleteButton:hover {
+.editButton:hover,
+.deleteButton:hover,
+.printButton button:hover {
   background-color: var(--Gold);
   border-color: var(--Light);
   color: black;
@@ -302,11 +307,17 @@
 .sourceLink {
   display: none;
 }
+.printButton {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+
 /* ------- View Page ---------- */
 
-
 .viewRecipe {
-padding: 3%;
+  padding-right: 3%;
+  padding-left: 3%;
   min-height: 90vh;
 }
 .recipeTitle {
@@ -331,18 +342,24 @@ padding: 3%;
 .ingredients li {
   list-style-type: circle;
 }
-.ingredients{
+.ingredients {
   background-color: var(--LightGold);
   background-size: 20px 20px;
-  background-image:
-    /* linear-gradient(to right, grey 1px, transparent 1px), */
-    linear-gradient(to bottom, rgba(128, 128, 128, 0.472) 1px, transparent 1px);
+  background-image: linear-gradient(
+    to bottom,
+    rgba(128, 128, 128, 0.253) 1px,
+    transparent 1px
+  );
   padding: 3%;
   border-style: solid;
   border-width: 10px;
   border-radius: 20px;
   border-left: 0;
   border-right: 0;
+  margin: 2%;
+}
+.ingredients li {
+  font-weight: 600;
 }
 /* ------- Create page-------- */
 
@@ -399,10 +416,12 @@ padding: 3%;
   transition: 0.3s;
   border-radius: 10px;
   padding: 3%;
+  box-shadow: 5px 5px 2px 1px var(--Gold);
+  transition: 0.3s;
+  margin-top: 3%;
 }
 .createRecipeButton:hover {
-  background-color: var(--Gold);
-  border-color: var(--Light);
+  box-shadow: 0px 0px 1px 5px var(--Gold);
 }
 .form-control {
   margin: 2%;

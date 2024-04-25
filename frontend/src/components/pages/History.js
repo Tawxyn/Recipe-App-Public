@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Component } from "react";
 import Nav from "../constants/NavBar";
 import Footer from "../constants/Footer";
 import axios from "axios";
+import { ReactToPrint } from "react-to-print";
 
 function RecipeList() {
   const [recipes, setRecipes] = useState([]);
@@ -40,7 +41,7 @@ function RecipeList() {
         // Handle error
       });
   };
-// Edit Logic 
+  // Edit Logic
   const handleEdit = (recipe) => {
     console.log("Editing recipe:", recipe);
     // Set the recipe being edited in state
@@ -49,10 +50,12 @@ function RecipeList() {
     setEditedTitle(recipe.title);
     setEditedSummary(recipe.summary);
     setEditedServings(recipe.servings ? recipe.servings.toString() : "");
-    setEditedReadyInMinutes(recipe.readyInMinutes ? recipe.readyInMinutes.toString() : "");
+    setEditedReadyInMinutes(
+      recipe.readyInMinutes ? recipe.readyInMinutes.toString() : ""
+    );
   };
 
-  // Set save towards backend change 
+  // Set save towards backend change
   const handleSaveEdit = () => {
     console.log("Saving edited recipe:", editRecipe);
     // Update the recipe with the edited title and summary
@@ -60,8 +63,8 @@ function RecipeList() {
       ...editRecipe,
       title: editedTitle,
       summary: editedSummary,
-      servings: parseInt(editedServings), 
-      readyInMinutes: parseInt(editedReadyInMinutes), 
+      servings: parseInt(editedServings),
+      readyInMinutes: parseInt(editedReadyInMinutes),
     };
     axios
       .put(`/edit/${editRecipe._id}`, updatedRecipe)
@@ -79,72 +82,91 @@ function RecipeList() {
       .catch((error) => {
         // Log error match backend
         console.error("Error updating recipe:", error);
-        
       });
   };
-  
+  const componentRef = React.useRef();
+
   return (
     <div>
       <Nav />
       <div className="HistoryWhole">
+        <div className="printButton">
+          <ReactToPrint
+            trigger={() => {
+              return <button>Print</button>;
+            }}
+            content={() => componentRef.current}
+            documentTitle="new document"
+            pageStyle="print"
+          />
+        </div>
         <h1>Recipe History</h1>
-        <ul>
+
+        <ul ref={componentRef}>
           {recipes.map((recipe) => (
-              <li key={recipe._id}>
-                <div className="historytitle">
-                  <h2>{recipe.title}</h2>
+            <li key={recipe._id}>
+              <div className="historytitle">
+                <h2>{recipe.title}</h2>
+              </div>
+              <div className="historyimage-container">
+                <div className="historyimage">
+                  <img src={recipe.image} alt={recipe.title} />
                 </div>
-                <div className="historyimage-container">
-                  <div className="historyimage">
-                    <img src={recipe.image} alt={recipe.title}/>
+              </div>
+              <p>{recipe.summary}</p>
+              <p>Servings: {recipe.servings}</p>
+              <p>Ready in: {recipe.readyInMinutes} minutes</p>
+              <a className="sourceLink" href={recipe.sourceUrl}>
+                Source
+              </a>
+              <button className="editButton" onClick={() => handleEdit(recipe)}>
+                Edit
+              </button>
+              <button
+                className="deleteButton"
+                onClick={() => handleDelete(recipe._id)}
+              >
+                Delete
+              </button>
+
+              {/* Modal rendering */}
+              {editRecipe && editRecipe._id === recipe._id && (
+                <div className="modal">
+                  <div className="modal-content">
+                    <h2>Edit Recipe</h2>
+                    <label>Title:</label>
+                    <input
+                      type="text"
+                      value={editedTitle}
+                      onChange={(e) => setEditedTitle(e.target.value)}
+                    />
+                    <label>Summary:</label>
+                    <textarea
+                      value={editedSummary}
+                      onChange={(e) => setEditedSummary(e.target.value)}
+                    />
+                    <label>Servings:</label>
+                    <input
+                      type="number"
+                      value={editedServings}
+                      onChange={(e) => setEditedServings(e.target.value)}
+                    />
+                    <label>ReadyInMinutes:</label>
+                    <input
+                      type="number"
+                      value={editedReadyInMinutes}
+                      onChange={(e) => setEditedReadyInMinutes(e.target.value)}
+                    />
+                    <button onClick={handleSaveEdit}>Save</button>
+                    <button onClick={() => setEditRecipe(null)}>Cancel</button>
                   </div>
                 </div>
-                <p>{recipe.summary}</p>
-                <p>Servings: {recipe.servings}</p>
-                <p>Ready in: {recipe.readyInMinutes} minutes</p>
-                <a className="sourceLink" href={recipe.sourceUrl}>Source</a>
-                <button className="editButton" onClick={() => handleEdit(recipe)}>Edit</button>
-                <button className="deleteButton" onClick={() => handleDelete(recipe._id)}>Delete</button>
-
-
-                {/* Modal rendering */}
-                {editRecipe && editRecipe._id === recipe._id && (
-                    <div className="modal">
-                      <div className="modal-content">
-                        <h2>Edit Recipe</h2>
-                        <label>Title:</label>
-                        <input
-                            type="text"
-                            value={editedTitle}
-                            onChange={(e) => setEditedTitle(e.target.value)}
-                        />
-                        <label>Summary:</label>
-                        <textarea
-                            value={editedSummary}
-                            onChange={(e) => setEditedSummary(e.target.value)}
-                        />
-                        <label>Servings:</label>
-                        <input
-                            type="number"
-                            value={editedServings}
-                            onChange={(e) => setEditedServings(e.target.value)}
-                        />
-                        <label>ReadyInMinutes:</label>
-                        <input
-                            type="number"
-                            value={editedReadyInMinutes}
-                            onChange={(e) => setEditedReadyInMinutes(e.target.value)}
-                        />
-                        <button onClick={handleSaveEdit}>Save</button>
-                        <button onClick={() => setEditRecipe(null)}>Cancel</button>
-                      </div>
-                    </div>
-                )}
-              </li>
+              )}
+            </li>
           ))}
         </ul>
       </div>
-      <Footer/>
+      <Footer />
     </div>
   );
 }
