@@ -143,25 +143,25 @@
   transition: 0.3s;
 }
 
-.searchBar:hover {
-  box-shadow: -5px 5px 2px 1px var(--Gold);
-}
-
-.search button {
+.search button, .custom-select {
   background-color: var(--Light);
   border-style: solid;
-  border-color: var(--DarkBlue);
+  border-color: var(--FontColor);
   cursor: pointer;
   transition: 0.3s;
-  border-radius: 10px;
+  border-radius: 20px;
   padding: 8px 20px; 
-  margin-left: 12px;
-}
-
-.search button:hover {
-  border-color: var(--FontColor);
+  margin-left: 20px;
   box-shadow: 5px 5px 2px 1px var(--Gold);
 
+}
+
+.search button:hover, .custom-select:hover, .searchBar:hover{
+  border-color: var(--FontColor);
+  box-shadow: 0px 0px 1px 8px var(--Gold);
+}
+.custom-select{
+  border-width: 2px;
 }
 /* -------- Results --------- */
 
