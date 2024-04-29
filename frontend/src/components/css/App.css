@@ -236,7 +236,16 @@
   text-align: center;
   margin-top: 20px;
 }
-
+.recipeHistoryCard{
+ 
+}
+.recipeHistoryCardContent{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-width: 1000px;
+  padding: 2%;
+}
 .historyimage-container {
   display: flex;
   justify-content: center;
@@ -281,31 +290,24 @@
   padding: 20px;
   text-align: center;
 }
-
-.editButton,
-.deleteButton,
-.printButton button {
-  background-color: var(--LightBlue);
-  border-style: ridge;
-  border-color: var(--LightBlue);
-  cursor: pointer;
-  transition: 0.3s;
-  border-radius: 10px;
-  padding: 1%;
-  color: white;
-  font-weight: bold;
-}
-
-.editButton:hover,
-.deleteButton:hover,
-.printButton button:hover {
-  background-color: var(--Gold);
-  border-color: var(--Light);
-  color: black;
-}
-
 .sourceLink {
   display: none;
+}
+.historyButton{
+  background-color: var(--Light);
+  border-style: solid;
+  border-color: var(--FontColor);
+  cursor: pointer;
+  transition: 0.3s;
+  border-radius: 20px;
+  padding: 8px 20px;
+  margin: 15px;
+  box-shadow: 5px 5px 2px 1px var(--Gold);
+  width: 100px;
+}
+.historyButton:hover {
+  border-color: var(--FontColor);
+  box-shadow: 0px 0px 1px 8px var(--Gold);
 }
 .printButton {
   width: 100%;
