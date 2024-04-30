@@ -309,6 +309,50 @@
   border-color: var(--FontColor);
   box-shadow: 0px 0px 1px 8px var(--Gold);
 }
+
+.recipe-summary {
+  font-family: 'Arial', sans-serif;
+  font-weight: bold;
+  color: #FFFFFF;
+  background-color: var(--LightBlue);
+  border-radius: 20px;
+  border: 2px solid var(--Gold);
+  box-shadow: 10px 10px 2px 1px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin-bottom: 20px;
+  transition: 0.3s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  height: 100%;
+}
+
+.recipe-servings,
+.recipe-ready-in {
+  font-family: 'Arial', sans-serif;
+  font-weight: bold;
+  color: #FFFFFF;
+  background-color: var(--LightBlue);
+  border-radius: 20px;
+  border: 2px solid var(--Gold);
+  padding: 10px 20px;
+  margin: 10px 0;
+  box-shadow: 5px 5px 2px 1px rgba(0, 0, 0, 0.1);
+  width: auto;
+  display: inline-flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.recipe-details-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 2%;
+}
+
 .printButton {
   width: 100%;
   display: flex;
@@ -407,9 +451,11 @@
   background-color: var(--Light);
   padding: 1%;
 }
+
 /* .createRecipeCard:hover {
   box-shadow: -10px 10px 2px 1px var(--Gold);
 } */
+
 .createRecipeButton {
   background-color: var(--Light);
   border-style: ridge;
