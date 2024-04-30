@@ -118,13 +118,15 @@ function SearchRecipes() {
                 ))}
               </ul>
             ) : (
-              <p>No recipes found</p> // Message if no filtered results
+                <div className="no-recipes-container"> {}
+                  <p className="no-recipes-found">No recipes found!</p>
+                </div> // Message if no filtered results
             )
           ) : (
-            // If no filter is selected, show ALL results
-            searchResults.length > 0 ? (
-              <ul>
-                {searchResults.map((result, index) => (
+              // If no filter is selected, show ALL results
+              searchResults.length > 0 ? (
+                  <ul>
+                  {searchResults.map((result, index) => (
                   <li key={index}>
                     <h3 className="recipe-title">{result.title}</h3>
                     {result.image && (
@@ -149,14 +151,17 @@ function SearchRecipes() {
                 ))}
               </ul>
             ) : (
-              <p>No recipes found</p> // Message if no results
+                <div className="no-recipes-container">
+                  <p className="no-recipes-found">No recipes found!</p>
+                </div> // Message if no results
             )
           )}
         </div>
 
       </div>
-      <Footer />
+      <Footer/>
     </div>
   );
 }
+
 export default SearchRecipes;
