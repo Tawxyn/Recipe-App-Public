@@ -1,4 +1,4 @@
-import React, { useState , useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import Footer from "../constants/Footer";
 import Popup from "reactjs-popup";
 import "reactjs-popup/dist/index.css";
@@ -22,14 +22,15 @@ function SearchRecipes() {
   };
 
   const handleFilter = async () => {
-    try{
+    try {
       // Keep results that meet filter criteria in searchResult state
-      setFilteredResults(searchResults.filter( (result) => 
-        result.dishTypes.includes(filterParam) ));
+      setFilteredResults(
+        searchResults.filter((result) => result.dishTypes.includes(filterParam))
+      );
     } catch (error) {
-      console.error("Error filtering search:", error)
+      console.error("Error filtering search:", error);
     }
-  }
+  };
 
   const handleAddRecipe = async (recipeId) => {
     const formData = new FormData();
@@ -47,15 +48,15 @@ function SearchRecipes() {
 
   // Calls handleFilter when filterParam changes
   useEffect(() => {
-    console.log(filterParam)
-    handleFilter()
-  }, [filterParam])
+    console.log(filterParam);
+    handleFilter();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [filterParam]);
 
-  // TESTING 
+  // TESTING
   useEffect(() => {
-    console.log("filtered results:", filteredResults)
-  }, [filteredResults])
-
+    console.log("filtered results:", filteredResults);
+  }, [filteredResults]);
 
   return (
     <div className="searchWholePage">
@@ -72,14 +73,15 @@ function SearchRecipes() {
             placeholder="Enter food"
           ></input>
           <button onClick={handleSearch}>Search</button>
-                    
+
           <select
-          // Changes filterParam after clicking option
-          onChange={(e) => {
-            setFilterParam(e.target.value)
-          }}
+            // Changes filterParam after clicking option
+            onChange={(e) => {
+              setFilterParam(e.target.value);
+            }}
             className="custom-select"
-            aria-label="Filter Recipes by Dish Type">
+            aria-label="Filter Recipes by Dish Type"
+          >
             <option value="">Filter by Dish Type</option>
             <option value="breakfast">Breakfast</option>
             <option value="lunch">Lunch/Dinner</option>
@@ -120,40 +122,37 @@ function SearchRecipes() {
             ) : (
               <p>No recipes found</p> // Message if no filtered results
             )
-          ) : (
-            // If no filter is selected, show ALL results
-            searchResults.length > 0 ? (
-              <ul>
-                {searchResults.map((result, index) => (
-                  <li key={index}>
-                    <h3 className="recipe-title">{result.title}</h3>
-                    {result.image && (
-                      <img src={result.image} alt={result.title} />
-                    )}
-                    <div className="recipeOptionButtons">
-                      <a href={`/recipe/${result.id}`}>View</a>
-                      <Popup
-                        trigger={<button> + </button>}
-                        position="right center"
+          ) : // If no filter is selected, show ALL results
+          searchResults.length > 0 ? (
+            <ul>
+              {searchResults.map((result, index) => (
+                <li key={index}>
+                  <h3 className="recipe-title">{result.title}</h3>
+                  {result.image && (
+                    <img src={result.image} alt={result.title} />
+                  )}
+                  <div className="recipeOptionButtons">
+                    <a href={`/recipe/${result.id}`}>View</a>
+                    <Popup
+                      trigger={<button> + </button>}
+                      position="right center"
+                    >
+                      <div>Save the recipe?</div>
+                      <button
+                        className="addRecipe"
+                        onClick={() => handleAddRecipe(result.id)}
                       >
-                        <div>Save the recipe?</div>
-                        <button
-                          className="addRecipe"
-                          onClick={() => handleAddRecipe(result.id)}
-                        >
-                          Add Now
-                        </button>
-                      </Popup>
-                    </div>
-                  </li>
-                ))}
-              </ul>
-            ) : (
-              <p>No recipes found</p> // Message if no results
-            )
+                        Add Now
+                      </button>
+                    </Popup>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <p>No recipes found</p> // Message if no results
           )}
         </div>
-
       </div>
       <Footer />
     </div>
