@@ -165,22 +165,6 @@
 .custom-select {
   border-width: 2px;
 }
-
-.no-recipes-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 200px;
-}
-
-.no-recipes-found {
-  text-align: center;
-  width: 100%;
-  font-size: 1.2rem;
-  font-family: 'Arial', sans-serif;
-  font-weight: bold;
-}
-
 /* -------- Results --------- */
 
 .results ul {
