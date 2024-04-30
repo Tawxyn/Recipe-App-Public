@@ -120,7 +120,9 @@ function SearchRecipes() {
                 ))}
               </ul>
             ) : (
-              <p>No recipes found</p> // Message if no filtered results
+              <div className="no-recipes-container">
+                <p className="no-recipes-found">No recipes found!</p>
+              </div> // Message if no filtered results
             )
           ) : // If no filter is selected, show ALL results
           searchResults.length > 0 ? (
@@ -150,7 +152,9 @@ function SearchRecipes() {
               ))}
             </ul>
           ) : (
-            <p>No recipes found</p> // Message if no results
+            <div className="no-recipes-container">
+              <p className="no-recipes-found">No recipes found!</p>
+            </div> // Message if no results
           )}
         </div>
       </div>

@@ -165,6 +165,21 @@
 .custom-select {
   border-width: 2px;
 }
+.no-recipes-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+}
+
+.no-recipes-found {
+  text-align: center;
+  width: 100%;
+  font-size: 1.2rem;
+  font-family: "Arial", sans-serif;
+  font-weight: bold;
+}
+
 /* -------- Results --------- */
 
 .results ul {
@@ -236,10 +251,9 @@
   text-align: center;
   margin-top: 20px;
 }
-.recipeHistoryCard{
- 
+.recipeHistoryCard {
 }
-.recipeHistoryCardContent{
+.recipeHistoryCardContent {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -293,7 +307,7 @@
 .sourceLink {
   display: none;
 }
-.historyButton{
+.historyButton {
   background-color: var(--Light);
   border-style: solid;
   border-color: var(--FontColor);
@@ -311,9 +325,9 @@
 }
 
 .recipe-summary {
-  font-family: 'Arial', sans-serif;
+  font-family: "Arial", sans-serif;
   font-weight: bold;
-  color: #FFFFFF;
+  color: #ffffff;
   background-color: var(--LightBlue);
   border-radius: 20px;
   border: 2px solid var(--Gold);
@@ -330,9 +344,9 @@
 
 .recipe-servings,
 .recipe-ready-in {
-  font-family: 'Arial', sans-serif;
+  font-family: "Arial", sans-serif;
   font-weight: bold;
-  color: #FFFFFF;
+  color: #ffffff;
   background-color: var(--LightBlue);
   border-radius: 20px;
   border: 2px solid var(--Gold);
