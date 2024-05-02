@@ -139,13 +139,15 @@ function SearchRecipes() {
                       trigger={<button> + </button>}
                       position="right center"
                     >
-                      <div>Save the recipe?</div>
-                      <button
-                        className="addRecipe"
-                        onClick={() => handleAddRecipe(result.id)}
-                      >
-                        Add Now
-                      </button>
+                      <div className="popup">
+                        <div>Save the recipe?</div>
+                        <button
+                          className="addRecipeOnSearch"
+                          onClick={() => handleAddRecipe(result.id)}
+                        >
+                          Add Now
+                        </button>
+                      </div>
                     </Popup>
                   </div>
                 </li>

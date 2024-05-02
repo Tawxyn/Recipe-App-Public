@@ -179,8 +179,24 @@
   font-family: "Arial", sans-serif;
   font-weight: bold;
 }
-.recipeOptionButtons{
+.addRecipeOnSearch{
+  cursor: pointer;
+  border-radius: 20px;
+  padding: 4%;
+  background-color: var(--Light);
+  box-shadow: 3px 3px var(--Gold);
+  transition: 0.3s;
+  margin: 2%;
+}
+.addRecipeOnSearch:hover{
+  box-shadow: 0px 0px 1px 3px var(--Gold);
+
+}
+.popup{
   padding: 3%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 /* -------- Results --------- */
 
