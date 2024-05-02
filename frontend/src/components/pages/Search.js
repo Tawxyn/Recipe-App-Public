@@ -109,7 +109,7 @@ function SearchRecipes() {
                       >
                         <div>Save the recipe?</div>
                         <button
-                          className="addRecipe"
+                          className="addRecipeOnSearch"
                           onClick={() => handleAddRecipe(result.id)}
                         >
                           Add Now

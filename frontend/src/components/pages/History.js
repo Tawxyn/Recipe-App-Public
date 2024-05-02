@@ -143,38 +143,50 @@ function RecipeList() {
 
                 {/* Modal rendering */}
                 {editRecipe && editRecipe._id === recipe._id && (
-                  <div className="modal">
-                    <div className="modal-content">
+                  <div className="modal ">
+                    <div className="modal-content editBox">
                       <h2>Edit Recipe</h2>
-                      <label>Title:</label>
-                      <input
-                        type="text"
-                        value={editedTitle}
-                        onChange={(e) => setEditedTitle(e.target.value)}
-                      />
-                      <label>Summary:</label>
-                      <textarea
-                        value={editedSummary}
-                        onChange={(e) => setEditedSummary(e.target.value)}
-                      />
-                      <label>Servings:</label>
-                      <input
-                        type="number"
-                        value={editedServings}
-                        onChange={(e) => setEditedServings(e.target.value)}
-                      />
-                      <label>ReadyInMinutes:</label>
-                      <input
-                        type="number"
-                        value={editedReadyInMinutes}
-                        onChange={(e) =>
-                          setEditedReadyInMinutes(e.target.value)
-                        }
-                      />
-                      <button onClick={handleSaveEdit}>Save</button>
-                      <button onClick={() => setEditRecipe(null)}>
-                        Cancel
-                      </button>
+                      <div className="editOptions"> 
+                        <div className="editComponent"> 
+                          <label>Title:</label>
+                          <input
+                            type="text"
+                            value={editedTitle}
+                            onChange={(e) => setEditedTitle(e.target.value)}
+                          />
+                        </div>
+                        <div className="editComponent"> 
+                          <label>Summary:</label>
+                          <textarea
+                            value={editedSummary}
+                            onChange={(e) => setEditedSummary(e.target.value)}
+                          />
+                        </div>
+                        <div className="editComponent"> 
+                          <label>Servings:</label>
+                          <input
+                            type="number"
+                            value={editedServings}
+                            onChange={(e) => setEditedServings(e.target.value)}
+                          />
+                        </div>
+                        <div className="editComponent"> 
+                          <label>ReadyInMinutes:</label>
+                          <input
+                            type="number"
+                            value={editedReadyInMinutes}
+                            onChange={(e) =>
+                              setEditedReadyInMinutes(e.target.value)
+                            }
+                          />
+                        </div>
+                      </div>
+                      <div className="editButtons"> 
+                        <button onClick={handleSaveEdit}>Save</button>
+                        <button onClick={() => setEditRecipe(null)}>
+                          Cancel
+                        </button>
+                      </div>
                     </div>
                   </div>
                 )}

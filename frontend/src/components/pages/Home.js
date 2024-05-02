@@ -16,13 +16,10 @@ function Home() {
             <Link to="/history">Save</Link> | Enjoy
           </h3>
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in
-            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-            culpa qui officia deserunt mollit anim id est laborum.
+          Whether you're searching for a family-friendly meal, planning a special occasion dinner, or simply looking for culinary inspiration, 
+          Ctrl-Alt-Defeat Recipe has you covered. So why wait? Start exploring, cooking, and sharing your culinary adventures with us today! 
+          Explore the <Link to="/search">Search</Link>  page and find a recipe that will work for you! Check out the create page to build and save your own recipes! 
+          Use the <Link to="/history">History</Link>  page to look back and cook your favorite recipes again and again!
           </p>
           <img
             src={RecipeImages}
